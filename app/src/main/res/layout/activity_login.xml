@@ -1,9 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/activity_login_rootview_constraintlayout"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".Activities.LoginActivity">
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.33105335" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10259918" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.61" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.71" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.86" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_h_guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_v_guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_v_guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_v_guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.703163" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_v_guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.29927006" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_v_guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_login_v_guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <ImageView
+        android:id="@+id/activity_login_cover_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/logo"
+        android:elevation="20dp"
+        android:contentDescription="@string/none"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/activity_login_h_guideline1"
+        app:layout_constraintEnd_toStartOf="@+id/activity_login_v_guideline3"
+        app:layout_constraintStart_toEndOf="@+id/activity_login_v_guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/activity_login_h_guideline8" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_login_h_guideline2">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/activity_login_v_guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/activity_login_v_guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <TextView
+            android:id="@+id/activity_login_receivecode_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAlignment="center"
+            android:textColor="@color/colorDarkBlue"
+            app:layout_constraintEnd_toStartOf="@id/activity_login_v_guideline8"
+            app:layout_constraintStart_toEndOf="@id/activity_login_v_guideline7"
+            android:text="Enter your email address to rceive a code to login"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activity_login_phone_edit_text_layout_holder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:theme="@style/loginActivityHintStyle"
+            app:layout_constraintEnd_toStartOf="@id/activity_login_v_guideline8"
+            app:layout_constraintStart_toEndOf="@id/activity_login_v_guideline7"
+            app:layout_constraintTop_toBottomOf="@id/activity_login_receivecode_textview"
+            app:layout_constraintVertical_bias="0.0">
+
+            <EditText
+                android:id="@+id/activity_login_phone_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:labelFor="@id/activity_login_phone_edit_text"
+                android:maxLength="15"
+                android:textColor="@color/colorDarkBlue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/activity_login_login_button"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:visibility="visible"
+            android:background="@drawable/rounded_corners_blue_background"
+            android:text="Get Code"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toStartOf="@id/activity_login_v_guideline8"
+            app:layout_constraintStart_toEndOf="@id/activity_login_v_guideline7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_login_phone_edit_text_layout_holder"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/activity_login_code_edit_text_layout_holder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:theme="@style/loginActivityHintStyle"
+            app:layout_constraintEnd_toStartOf="@id/activity_login_v_guideline8"
+            app:layout_constraintStart_toEndOf="@id/activity_login_v_guideline7"
+            app:layout_constraintTop_toBottomOf="@id/activity_login_receivecode_textview"
+            app:layout_constraintVertical_bias="0.0">
+
+            <EditText
+                android:id="@+id/activity_login_code_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Code"
+                android:inputType="text"
+                android:labelFor="@id/activity_login_code_edit_text"
+                android:maxLength="15"
+                android:textColor="@color/colorDarkBlue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/activity_login_verify_code_button"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:visibility="invisible"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/rounded_corners_blue_background"
+            android:text="Login"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toStartOf="@id/activity_login_v_guideline8"
+            app:layout_constraintStart_toEndOf="@id/activity_login_v_guideline7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_login_code_edit_text_layout_holder"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ProgressBar
+            android:id="@+id/activity_login_loader"
+            style="@style/ProgressBarBlack"
+            android:layout_width="26dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/activity_login_v_guideline8"
+            app:layout_constraintStart_toEndOf="@id/activity_login_v_guideline7"
+            app:layout_constraintTop_toBottomOf="@+id/activity_login_receivecode_textview"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
