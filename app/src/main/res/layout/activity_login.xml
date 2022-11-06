@@ -168,7 +168,20 @@
             android:textColor="@color/colorDarkBlue"
             app:layout_constraintEnd_toStartOf="@id/activity_login_v_guideline8"
             app:layout_constraintStart_toEndOf="@id/activity_login_v_guideline7"
-            android:text="Enter your email address to rceive a code to login"
+            android:text="Enter your email address to receive a code to login"
+            />
+
+        <TextView
+            android:id="@+id/activity_login_entercode_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAlignment="center"
+            android:visibility="invisible"
+            android:textColor="@color/colorDarkBlue"
+            app:layout_constraintEnd_toStartOf="@id/activity_login_v_guideline8"
+            app:layout_constraintStart_toEndOf="@id/activity_login_v_guideline7"
+            android:text="A code has been sent to your email inbox/spam. Enter the code to login."
             />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -190,7 +203,6 @@
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:labelFor="@id/activity_login_phone_edit_text"
-                android:maxLength="15"
                 android:textColor="@color/colorDarkBlue" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -222,7 +234,7 @@
             android:theme="@style/loginActivityHintStyle"
             app:layout_constraintEnd_toStartOf="@id/activity_login_v_guideline8"
             app:layout_constraintStart_toEndOf="@id/activity_login_v_guideline7"
-            app:layout_constraintTop_toBottomOf="@id/activity_login_receivecode_textview"
+            app:layout_constraintTop_toBottomOf="@id/activity_login_entercode_textview"
             app:layout_constraintVertical_bias="0.0">
 
             <EditText
@@ -231,9 +243,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Code"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:labelFor="@id/activity_login_code_edit_text"
-                android:maxLength="15"
                 android:textColor="@color/colorDarkBlue" />
 
         </com.google.android.material.textfield.TextInputLayout>

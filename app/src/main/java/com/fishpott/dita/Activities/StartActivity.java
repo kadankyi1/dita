@@ -17,6 +17,12 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+
+        if(Config.userIsLoggedIn(StartActivity.this)) {
+            Config.openActivity(StartActivity.this, MainActivity.class, 1, 2, 0, "", "");
+            return;
+        }
+
         findViewById(R.id.activity_start_start_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
