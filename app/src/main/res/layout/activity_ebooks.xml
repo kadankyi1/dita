@@ -65,7 +65,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:gravity="center"
-                    android:text="Intro"
+                    android:text="Ebooks"
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"
