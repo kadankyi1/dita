@@ -12,30 +12,30 @@ import com.fishpott.dita.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EbooksFragment#newInstance} factory method to
+ * Use the {@link WelcomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EbooksFragment extends Fragment {
+public class WelcomeFragment extends Fragment {
 
-
-    public EbooksFragment() {
+    public WelcomeFragment() {
         // Required empty public constructor
     }
 
-    public static EbooksFragment newInstance() {
-        EbooksFragment fragment = new EbooksFragment();
+    public static WelcomeFragment newInstance() {
+        WelcomeFragment fragment = new WelcomeFragment();
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ebooks, container, false);
+        return inflater.inflate(R.layout.fragment_welcome, container, false);
     }
 }

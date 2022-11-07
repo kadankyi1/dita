@@ -6,13 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.fishpott.dita.Fragments.EbooksFragment;
-import com.fishpott.dita.Fragments.JourneysFragment;
+import com.fishpott.dita.Fragments.WelcomeFragment;
 import com.fishpott.dita.Fragments.SettingsFragment;
 import com.fishpott.dita.R;
 
@@ -78,8 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         List<Fragment> fList = new ArrayList<Fragment>();
 
         fList.add(SettingsFragment.newInstance());
-        fList.add(JourneysFragment.newInstance());
-        fList.add(EbooksFragment.newInstance());
+        fList.add(WelcomeFragment.newInstance());
         return fList;
     }
 
