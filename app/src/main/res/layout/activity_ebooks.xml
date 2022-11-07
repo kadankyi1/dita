@@ -230,7 +230,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/white_background_pressed_darker"
                         android:paddingBottom="5dp"
-                        app:layout_constraintBottom_toTopOf="@+id/redeem_wallet_coupon_holder_contrainlayout"
+                        app:layout_constraintBottom_toTopOf="@+id/journeys_holder_contrainlayout"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/fragment_about_ebooks_holder_contrainlayout">
@@ -288,7 +288,7 @@
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/redeem_wallet_coupon_holder_contrainlayout"
+                        android:id="@+id/journeys_holder_contrainlayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="45dp"
@@ -358,7 +358,7 @@
                         android:background="@drawable/white_background_pressed_darker"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/redeem_wallet_coupon_holder_contrainlayout"
+                        app:layout_constraintTop_toBottomOf="@+id/journeys_holder_contrainlayout"
                         app:layout_constraintBottom_toBottomOf="parent">
 
                         <ImageView

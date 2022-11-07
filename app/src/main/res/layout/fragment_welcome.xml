@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/white_background_pressed_darker"
                 android:paddingBottom="5dp"
-                app:layout_constraintBottom_toTopOf="@+id/redeem_wallet_coupon_holder_contrainlayout"
+                app:layout_constraintBottom_toTopOf="@+id/journeys_holder_contrainlayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_about_ebooks_holder_contrainlayout">
@@ -232,7 +232,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/redeem_wallet_coupon_holder_contrainlayout"
+                android:id="@+id/journeys_holder_contrainlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/white_background_pressed_darker"
@@ -281,7 +281,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="9dp"
-                    android:text="Do you have a goal? Journeys will put you on a learning path that will give you the knowledge from multiple books to achieve your goals"
+                    android:text="Do you have a goal? Journeys will put you on a learning path that will give you the knowledge from multiple books to achieve your goals. Click here to start a journey"
                     android:textColor="@color/colorLightGray"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -301,7 +301,7 @@
                 android:background="@drawable/white_background_pressed_darker"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/redeem_wallet_coupon_holder_contrainlayout"
+                app:layout_constraintTop_toBottomOf="@+id/journeys_holder_contrainlayout"
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <ImageView

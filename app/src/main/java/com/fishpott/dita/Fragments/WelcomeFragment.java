@@ -10,13 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fishpott.dita.Activities.EbooksActivity;
+import com.fishpott.dita.Activities.JourneysActivity;
 import com.fishpott.dita.Activities.SubscriptionActivity;
 import com.fishpott.dita.R;
 import com.fishpott.dita.Util.Config;
 
 public class WelcomeFragment extends Fragment implements View.OnClickListener {
 
-    private ConstraintLayout mEbooksHolderConstraintLayout, mSubscriptionHolderConstraintLayout;
+    private ConstraintLayout mEbooksHolderConstraintLayout, mSubscriptionHolderConstraintLayout, mJourneysHolderConstraintLayout;
 
     public WelcomeFragment() {
         // Required empty public constructor
@@ -40,8 +41,10 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
 
         mEbooksHolderConstraintLayout = view.findViewById(R.id.fragment_about_ebooks_holder_contrainlayout);
         mSubscriptionHolderConstraintLayout = view.findViewById(R.id.subscription_holder_contrainlayout);
+        mJourneysHolderConstraintLayout = view.findViewById(R.id.journeys_holder_contrainlayout);
 
         mEbooksHolderConstraintLayout.setOnClickListener(this);
+        mJourneysHolderConstraintLayout.setOnClickListener(this);
         mSubscriptionHolderConstraintLayout.setOnClickListener(this);
 
         return view;
@@ -51,6 +54,8 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         if(view.getId() == mEbooksHolderConstraintLayout.getId()){
             Config.openActivity(getActivity(), EbooksActivity.class, 0, 0, 0, "", "");
+        } else if(view.getId() == mJourneysHolderConstraintLayout.getId()){
+            Config.openActivity(getActivity(), JourneysActivity.class, 0, 0, 0, "", "");
         } else if(view.getId() == mSubscriptionHolderConstraintLayout.getId()){
             Config.openActivity(getActivity(), SubscriptionActivity.class, 0, 0, 0, "", "");
         }
