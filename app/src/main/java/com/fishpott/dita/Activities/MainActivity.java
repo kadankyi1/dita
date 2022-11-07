@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentsHolderViewPager.setCurrentItem(1);
 
         mSettingsIconImageView.setOnClickListener(this);
+        mInfoImageView.setOnClickListener(this);
 
     }
 
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view.getId() == mSettingsIconImageView.getId()){
             mFragmentsHolderViewPager.setCurrentItem(0);
+        } else if(view.getId() == mInfoImageView.getId()){
+            mFragmentsHolderViewPager.setCurrentItem(1);
         }
     }
 

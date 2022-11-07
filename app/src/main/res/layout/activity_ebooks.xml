@@ -5,12 +5,413 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.EbooksActivity">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/fragment_about_guideline_h_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.08" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="EbooksActivity"
-        />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/fragment_about_guideline_h_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.35" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/fragment_about_guideline_h_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/fragment_about_guideline_h_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.35" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragment_about_constraint_layout_2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/colorDarkBlue"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_about_guideline_h_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/fragment_about_guideline_v_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.15" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/fragment_about_guideline_v_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.60" />
+
+                <TextView
+                    android:id="@+id/fragment_about_title_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:text="Intro"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/fragment_about_constraint_layout_2"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_about_guideline_v_4"
+                    app:layout_constraintStart_toStartOf="@+id/fragment_about_guideline_v_3"
+                    app:layout_constraintTop_toTopOf="@+id/fragment_about_constraint_layout_2" />
+
+                <ImageView
+                    android:id="@+id/fragment_about_fp_back_imageview"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:contentDescription="@string/none"
+                    app:tint="@color/colorWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_about_guideline_v_3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/forgot_password_arrow_back" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_about_guideline_h_1">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fragment_about_holder_contrainlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/white_background_pressed_darker"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/fragment_about_credit_wallet_holder_contrainlayout">
+
+                        <ImageView
+                            android:id="@+id/fragment_about_wallet_imageview"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="8dp"
+                            android:contentDescription="@string/none"
+                            android:src="@drawable/logo"
+                            app:layout_constraintBottom_toTopOf="@+id/fragment_about_wallet_info_textview"
+                            app:layout_constraintEnd_toStartOf="@+id/fragment_about_wallet_textview"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/fragment_about_wallet_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="About Dita - Learning Aid"
+                            android:textColor="@color/colorDarkBlue"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/fragment_about_wallet_info_textview"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/fragment_about_wallet_imageview"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/fragment_about_wallet_info_textview"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="9dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="8dp"
+                            android:text="FishPott was created to connect you to businesses and the investment opportunities they bring. These are mainly shares/stocks. There are businesses that are doing well but need to scale up. With your investment, they can scale up and be bigger, and in that regard, you will receive dividends for being an investor/co-owner. The profiles of businesses that give you the best investment opportunities and return for your money are hosted on the FishPott App. You get a periodic question to answer and by doing that, you train your FishPott to learn your investing persona and based on that, Artificial(Pott) Intelligence will recommend shares/stocks for you to buy. The FishPot Company works with the Securities and Exchange Commission (SEC) to ensure your investments are protected and that businesses report their earnings periodically."
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fragment_about_wallet_textview" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fragment_about_credit_wallet_holder_contrainlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/white_background_pressed_darker"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fragment_about_holder_contrainlayout"
+                        app:layout_constraintBottom_toTopOf="@+id/myshares_holder_contrainlayout">
+
+                        <ImageView
+                            android:id="@+id/credit_wallet_imageview"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="8dp"
+                            android:contentDescription="@string/none"
+                            android:src="@drawable/logo"
+                            app:layout_constraintBottom_toTopOf="@+id/credit_wallet_info_textview"
+                            app:layout_constraintEnd_toStartOf="@+id/credit_wallet_textview"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.57" />
+
+                        <TextView
+                            android:id="@+id/credit_wallet_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Drills - Training Your FishPott"
+                            android:textColor="@color/colorDarkBlue"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/credit_wallet_info_textview"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/credit_wallet_imageview"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/credit_wallet_info_textview"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="9dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginStart="15dp"
+                            android:text="This is the tool you use to train your FishPott by letting it know what you like or dislike. This is an ongoing process as people can change. So periodically, a drill question is suggested to you by FishPott and your anwsers train your FishPott to know the kind of business stocks to suggest to you"
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/credit_wallet_textview" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/myshares_holder_contrainlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_background_pressed_darker"
+                        android:paddingBottom="5dp"
+                        app:layout_constraintBottom_toTopOf="@+id/redeem_wallet_coupon_holder_contrainlayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fragment_about_credit_wallet_holder_contrainlayout">
+
+                        <ImageView
+                            android:id="@+id/myshares_imageview"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="8dp"
+                            android:contentDescription="@string/none"
+                            android:src="@drawable/logo"
+                            app:layout_constraintBottom_toTopOf="@+id/myshares_info_textview"
+                            app:layout_constraintEnd_toStartOf="@+id/myshares_textview"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/myshares_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:text="Summaries"
+                            android:textColor="@color/colorDarkBlue"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/myshares_info_textview"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/myshares_imageview"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/myshares_info_textview"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="9dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginStart="15dp"
+                            android:text="To buy shares from a business, you will have to receive a business suggestion from your FishPott. This will happen as you keep answering drills/questions that train your FishPott and increases it\'s intelligence. On some occasions, you may also receive a special Buy Invitation from the FishPot Company. To protect your investments, you can always buy a yearly risk investment protection insurance. After purchase, the shares you bought will be confirmed and registered with the Government to make it official."
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/myshares_textview" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/redeem_wallet_coupon_holder_contrainlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="45dp"
+                        android:background="@drawable/white_background_pressed_darker"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/myshares_holder_contrainlayout"
+                        app:layout_constraintBottom_toBottomOf="@+id/other_holder_contrainlayout">
+
+                        <ImageView
+                            android:id="@+id/redeem_wallet_coupon_icon_imageview"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="8dp"
+                            android:contentDescription="@string/none"
+                            android:src="@drawable/logo"
+                            app:layout_constraintBottom_toTopOf="@+id/redeem_wallet_coupon_info_textview"
+                            app:layout_constraintEnd_toStartOf="@+id/redeem_wallet_coupon_textview"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/redeem_wallet_coupon_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="9dp"
+                            android:text="Investment Risk Protection"
+                            android:textColor="@color/colorDarkBlue"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/redeem_wallet_coupon_info_textview"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/redeem_wallet_coupon_icon_imageview"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/redeem_wallet_coupon_info_textview"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="9dp"
+                            android:text="This is a yearly protection plan backed by a registered insurance company to protect your investments. When you are buying shares and you include it, it simply means that in a years time, if stocks of a business you invested in fails, you will be reimbursed certain amounts you paid to cushion you."
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/redeem_wallet_coupon_textview" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/other_holder_contrainlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="45dp"
+                        android:background="@drawable/white_background_pressed_darker"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/redeem_wallet_coupon_holder_contrainlayout"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <ImageView
+                            android:id="@+id/other_icon_imageview"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="8dp"
+                            android:contentDescription="@string/none"
+                            android:src="@drawable/logo"
+                            app:layout_constraintBottom_toTopOf="@+id/other_info_textview"
+                            app:layout_constraintEnd_toStartOf="@+id/other_textview"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/other_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="9dp"
+                            android:text="2222 Investment Risk Protection"
+                            android:textColor="@color/colorDarkBlue"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/other_info_textview"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/other_icon_imageview"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/other_info_textview"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="9dp"
+                            android:text="This is a yearly protection plan backed by a registered insurance company to protect your investments. When you are buying shares and you include it, it simply means that in a years time, if stocks of a business you invested in fails, you will be reimbursed certain amounts you paid to cushion you."
+                            android:textColor="@color/colorLightGray"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/other_textview" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

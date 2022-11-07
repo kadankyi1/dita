@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_nice.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable-v24/login_activity_error_icon.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable-v24/main_activity_topbar_menu_inactive_icon.xml" value="0.321025641025641" />
+        <entry key="app/src/main/res/drawable/forgot_password_arrow_back.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/rounded_corners_blue_background.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/drawable/rounded_corners_white_background.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/white_background_pressed_darker.xml" value="0.321025641025641" />
