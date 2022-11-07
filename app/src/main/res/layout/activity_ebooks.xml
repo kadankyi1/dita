@@ -109,7 +109,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/fragment_about_credit_wallet_holder_contrainlayout">
+                        app:layout_constraintBottom_toTopOf="@+id/fragment_about_ebooks_holder_contrainlayout">
 
                         <ImageView
                             android:id="@+id/fragment_about_wallet_imageview"
@@ -162,7 +162,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/fragment_about_credit_wallet_holder_contrainlayout"
+                        android:id="@+id/fragment_about_ebooks_holder_contrainlayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -233,7 +233,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/redeem_wallet_coupon_holder_contrainlayout"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/fragment_about_credit_wallet_holder_contrainlayout">
+                        app:layout_constraintTop_toBottomOf="@+id/fragment_about_ebooks_holder_contrainlayout">
 
                         <ImageView
                             android:id="@+id/myshares_imageview"
@@ -296,7 +296,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/myshares_holder_contrainlayout"
-                        app:layout_constraintBottom_toBottomOf="@+id/other_holder_contrainlayout">
+                        app:layout_constraintBottom_toBottomOf="@+id/subscription_holder_contrainlayout">
 
                         <ImageView
                             android:id="@+id/redeem_wallet_coupon_icon_imageview"
@@ -351,7 +351,7 @@
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/other_holder_contrainlayout"
+                        android:id="@+id/subscription_holder_contrainlayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="45dp"

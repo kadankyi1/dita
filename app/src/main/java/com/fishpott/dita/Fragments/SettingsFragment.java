@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.fishpott.dita.Activities.ContactDitaActivity;
 import com.fishpott.dita.Activities.EbooksActivity;
@@ -27,6 +28,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private View view = null;
     private ConstraintLayout mSubscriptionHolderConstraintLayout, mJourneysHolderConstraintLayout, mEbooksHolderConstraintLayout,
             mMentorsHolderConstraintLayout, mContactHolderConstraintLayout;
+    private TextView mEmailTextView;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -53,6 +55,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         mEbooksHolderConstraintLayout = view.findViewById(R.id.ebooks_holder_contrainlayout);
         mMentorsHolderConstraintLayout = view.findViewById(R.id.mentors_holder_contrainlayout);
         mContactHolderConstraintLayout = view.findViewById(R.id.contact_fp_holder_contrainlayout);
+        mEmailTextView = view.findViewById(R.id.myemail_textview);
+
+        mEmailTextView.setText(Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_EMAIL));
 
         mSubscriptionHolderConstraintLayout.setOnClickListener(this);
         mJourneysHolderConstraintLayout.setOnClickListener(this);
