@@ -19,9 +19,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.fishpott.dita.ListDataGenerators.BooksListDataGenerator;
 import com.fishpott.dita.Models.BookModel;
 import com.fishpott.dita.R;
@@ -34,7 +39,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AudiosListActivity extends AppCompatActivity implements View.OnClickListener {
+public class EbooksActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView m_back_imageview, m_reload_imageview;
     private ProgressBar m_loading_progressbar;
@@ -54,7 +59,7 @@ public class AudiosListActivity extends AppCompatActivity implements View.OnClic
         m_recyclerview = findViewById(R.id.books_holder_recyclerview);
 
 
-        m_linearlayoutmanager = new LinearLayoutManager(AudiosListActivity.this);
+        m_linearlayoutmanager = new LinearLayoutManager(EbooksActivity.this);
 
         m_recyclerview.setItemViewCacheSize(20);
         m_recyclerview.setDrawingCacheEnabled(true);
@@ -149,7 +154,7 @@ public class AudiosListActivity extends AppCompatActivity implements View.OnClic
         @Override
         public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
 
-            if(!AudiosListActivity.this.isFinishing() && !BooksListDataGenerator.getAllData().get(position).getBook_cover_photo().equalsIgnoreCase("")){
+            if(!EbooksActivity.this.isFinishing() && !BooksListDataGenerator.getAllData().get(position).getBook_cover_photo().equalsIgnoreCase("")){
 
                 Config.loadImageView(getApplicationContext(), BooksListDataGenerator.getAllData().get(position).getBook_cover_photo().trim(), ((AudioViewHolder) holder).m_audio_image, null);
 
@@ -189,7 +194,7 @@ public class AudiosListActivity extends AppCompatActivity implements View.OnClic
                         @Override
                         public void onResponse(String response) {
                             Config.show_log_in_console("AudiosListAct", "response: " +  response);
-                            if(!AudiosListActivity.this.isFinishing()){
+                            if(!EbooksActivity.this.isFinishing()){
                                 try {
                                     JSONObject response_json_object = new JSONObject(response);
 
@@ -209,18 +214,25 @@ public class AudiosListActivity extends AppCompatActivity implements View.OnClic
                                             for (int i = 0; i < linkupsSuggestionsArray.length(); i++) {
                                                 BookModel mine1 = new BookModel();
                                                 final JSONObject k = linkupsSuggestionsArray.getJSONObject(i);
-                                                mine1.setAudio_id(k.getInt("audio_id"));
-                                                mine1.setAudio_name(k.getString("audio_name"));
-                                                mine1.setAudio_description(k.getString("audio_description"));
-                                                mine1.setAudio_image(k.getString("audio_image"));
-                                                mine1.setAudio_mp3(k.getString("audio_mp3"));
+                                                mine1.setBook_id(k.getLong("book_id"));
+                                                mine1.setBook_sys_id(k.getString("book_sys_id"));
+                                                mine1.setBook_title(k.getString("book_title"));
+                                                mine1.setBook_author(k.getString("book_author"));
+                                                mine1.setBook_ratings(k.getString("book_ratings"));
+                                                mine1.setBook_description_short(k.getString("book_description_short"));
+                                                mine1.setBook_description_long(k.getString("book_description_long"));
+                                                mine1.setBook_pages(k.getString("book_pages"));
+                                                mine1.setBook_pdf(k.getString("book_pdf"));
+                                                mine1.setBook_summary_pdf(k.getString("book_summary_pdf"));
+                                                mine1.setBook_audio(k.getString("book_audio"));
+                                                mine1.setBook_summary_audio(k.getString("book_summary_audio"));
                                                 mine1.setCreated_at(k.getString("created_at"));
                                                 BooksListDataGenerator.addOneData(mine1);
 
                                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        if (!AudiosListActivity.this.isFinishing() && m_recyclerview != null) {
+                                                        if (!EbooksActivity.this.isFinishing() && m_recyclerview != null) {
                                                             m_recyclerview.getAdapter().notifyItemInserted(BooksListDataGenerator.getAllData().size());
                                                             m_loading_progressbar.setVisibility(View.INVISIBLE);
                                                             m_reload_imageview.setVisibility(View.INVISIBLE);
