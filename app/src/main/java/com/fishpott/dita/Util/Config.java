@@ -7,30 +7,42 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.fishpott.dita.Activities.WebViewActivity;
 import com.fishpott.dita.R;
 
 public class Config {
 
     // DEBUG
+    public static Boolean ALLOW_LOGGING = true;
     public static final String CURRENT_HTTP_IN_USE = "http://";
     public static final String CURRENT_ENVIRONMENT_DOMAIN_IN_USE = "10.0.2.2:3000";
 
     // LIVE
+    //public static Boolean ALLOW_LOGGING = false;
     //public static final String CURRENT_HTTP_IN_USE = "https://";
     //public static final String CURRENT_ENVIRONMENT_DOMAIN_IN_USE = "dita.io";
 
     public static final String LINK_SEND_LOGIN_CODE = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/send-login-code";
     public static final String LINK_VERIFY_LOGIN_CODE = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/verify-login-code";
+    public static final String LINK_VERIFY_GET_BOOKS = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/get-books";
 
 
     public static final String WEBVIEW_KEY_URL = "URL";
@@ -38,6 +50,12 @@ public class Config {
     public static final String SHARED_PREF_KEY_USER_CREDENTIALS_USER_ID = "USER_ID";
     public static final String SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN = "USER_PASSWORD";
 
+
+    public static void show_log_in_console(String title, String description){
+        if(ALLOW_LOGGING){
+            Log.e(title, description);
+        }
+    }
 
     public static void openActivity(Activity thisActivity, Class NewActivity, int includeAnimation, int finishActivity, int addData, String dataIndex, String dataValue) {
         Intent intent = new Intent(thisActivity, NewActivity);
@@ -259,4 +277,35 @@ public class Config {
            return false;
         }
     }
+
+
+    public static void loadImageView(Context context, String url, ImageView imageView, final ProgressBar progressBar){
+
+        if(context != null && imageView != null){
+            Config.show_log_in_console("loadImageView", "url: " + url);
+            Glide.with(context)
+                    .load(url)
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            if(progressBar != null){
+                                progressBar.setVisibility(View.GONE);
+                            }
+                            Config.show_log_in_console("loadImageView", "onLoadFailed: " + e.toString());
+                            return false;
+                        }
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            if(progressBar != null){
+                                progressBar.setVisibility(View.GONE);
+                            }
+                            Config.show_log_in_console("loadImageView", "onResourceReady");
+                            return false;
+                        }
+                    })
+                    .into(imageView);
+            Config.show_log_in_console("loadImageView", "COMPLETED");
+        }
+    }
+
 }

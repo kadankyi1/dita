@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dita">
         <activity
+            android:name=".Activities.BookDetailsActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activities.ContactDitaActivity"
             android:exported="true" />
         <activity

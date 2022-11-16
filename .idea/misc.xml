@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/rounded_corners_white_background.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/white_background_pressed_darker.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/font/splashfont.xml" value="0.33487179487179486" />
+        <entry key="app/src/main/res/layout/activity_book_details.xml" value="0.29583333333333334" />
         <entry key="app/src/main/res/layout/activity_contact_dita.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_ebooks.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_journeys.xml" value="0.3098958333333333" />
@@ -21,6 +22,7 @@
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_subscription.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_web_view.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/book_list_item.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_ebooks.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_journeys.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.25" />
