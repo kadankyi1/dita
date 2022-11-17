@@ -162,7 +162,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                 ((AudioViewHolder) holder).m_audio_image.setImageResource(R.drawable.cover);
             }
             ((AudioViewHolder) holder).m_title_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_title());
-            ((AudioViewHolder) holder).m_price_textview.setText(BooksListDataGenerator.getAllData().get(position).getCreated_at());
+            ((AudioViewHolder) holder).m_price_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_cost());
 
         }
 
@@ -183,13 +183,15 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                     m_reload_imageview.setVisibility(View.INVISIBLE);
                     m_recyclerview.setVisibility(View.INVISIBLE);
                     m_loading_progressbar.setVisibility(View.VISIBLE);
+                    BooksListDataGenerator.getAllData().clear();
+                    m_recyclerview.getAdapter().notifyDataSetChanged();
                 }
             });
 
             Config.show_log_in_console("AudiosListAct", "\n token: " + token);
 
 
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, Config.LINK_VERIFY_GET_BOOKS,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.LINK_VERIFY_GET_BOOKS,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -199,7 +201,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                                     JSONObject response_json_object = new JSONObject(response);
 
                                     if(response_json_object.getString("status").equalsIgnoreCase("success")){
-                                        JSONArray linkupsSuggestionsArray = response_json_object.getJSONObject("data").getJSONArray("data");
+                                        JSONArray linkupsSuggestionsArray = response_json_object.getJSONArray("data");
 
                                         Config.show_log_in_console("AudiosListAct", "linkupsSuggestionsArray: " + linkupsSuggestionsArray.toString());
                                         if (linkupsSuggestionsArray.length() > 0) {
@@ -219,6 +221,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                                                 mine1.setBook_title(k.getString("book_title"));
                                                 mine1.setBook_author(k.getString("book_author"));
                                                 mine1.setBook_ratings(k.getString("book_ratings"));
+                                                mine1.setBook_cover_photo(k.getString("book_cover_photo"));
                                                 mine1.setBook_description_short(k.getString("book_description_short"));
                                                 mine1.setBook_description_long(k.getString("book_description_long"));
                                                 mine1.setBook_pages(k.getString("book_pages"));
@@ -226,7 +229,8 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                                                 mine1.setBook_summary_pdf(k.getString("book_summary_pdf"));
                                                 mine1.setBook_audio(k.getString("book_audio"));
                                                 mine1.setBook_summary_audio(k.getString("book_summary_audio"));
-                                                mine1.setCreated_at(k.getString("created_at"));
+                                                mine1.setBook_cost(k.getString("book_cost_usd"));
+                                                //mine1.setCreated_at(k.getString("created_at"));
                                                 BooksListDataGenerator.addOneData(mine1);
 
                                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -279,6 +283,17 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                             m_reload_imageview.setVisibility(View.VISIBLE);
                         }
                     }) {
+
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("kw", "");
+                    map.put("app_type", "ANDROID");
+                    map.put("app_version_code", String.valueOf(Config.getAppVersionCode(getApplicationContext())));
+                    Config.show_log_in_console("LoginActivity", "Map: " +  map.toString());
+                    return map;
+                }
 
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
