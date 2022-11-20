@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.EbookDetailsActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_ebookdetails_guideline_h_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activity_ebookdetails_guideline_h_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_ebookdetails_constraint_layout_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorDarkBlue"
+        app:layout_constraintBottom_toTopOf="@+id/activity_ebookdetails_guideline_h_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/activity_ebookdetails_guideline_v_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/activity_ebookdetails_guideline_v_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+
+        <ImageView
+            android:id="@+id/activity_ebookdetails_fp_back_imageview"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="@string/none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/activity_ebookdetails_guideline_v_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/forgot_password_arrow_back"
+            app:tint="@color/colorWhite" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/reloadbook_imageview"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:tint="@color/colorDarkBlue"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_baseline_refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_guideline_h_1" />
+
+
+    <ProgressBar
+        android:id="@+id/loading_progressbar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:visibility="gone"
+        style="@style/ProgressBarDarkBlue"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_guideline_h_1"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_guideline_h_1">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/activity_ebookdetails_guideline_h_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/activity_ebookdetails_guideline_h_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.40" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/activity_ebookdetails_guideline_v_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/list_item_book_image_imageview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cover"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/activity_ebookdetails_guideline_h_5"
+            app:layout_constraintEnd_toStartOf="@+id/activity_ebookdetails_guideline_v_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_guideline_h_7" />
+
+
+        <TextView
+            android:id="@+id/list_item_book_title_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="The Best Arts"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/activity_ebookdetails_guideline_v_6"
+            app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_guideline_h_7"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/list_item_book_author_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="By: Pastor Julius"
+            android:textColor="@color/colorLightGray"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/activity_ebookdetails_guideline_v_6"
+            app:layout_constraintTop_toBottomOf="@+id/list_item_book_title_textview"/>
+
+        <TextView
+            android:id="@+id/list_item_book_short_description_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description. This is the short description. his is the short description.  "
+            android:textColor="@color/colorLightGray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/activity_ebookdetails_guideline_v_6"
+            app:layout_constraintTop_toBottomOf="@+id/list_item_book_author_textview"  />
+
+
+        <TextView
+            android:id="@+id/list_item_book_price_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Free"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/activity_ebookdetails_guideline_v_6"
+            app:layout_constraintTop_toBottomOf="@+id/list_item_book_short_description_textview"  />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/activity_ebookdetails_readfull_button"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corners_blue_background"
+            android:text="Read Full"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/activity_ebookdetails_guideline_v_6"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_guideline_h_5"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/activity_ebookdetails_readsummary_button"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_corners_blue_background"
+            android:text="Read Summary"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/activity_ebookdetails_guideline_v_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_readfull_button"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

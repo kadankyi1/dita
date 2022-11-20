@@ -41,10 +41,10 @@ import java.util.Map;
 
 public class EbooksActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView m_back_imageview, m_reload_imageview;
-    private ProgressBar m_loading_progressbar;
-    private RecyclerView m_recyclerview;
-    private LinearLayoutManager m_linearlayoutmanager;
+    private ImageView mBackImageview, mReloadImageview;
+    private ProgressBar mLoadingProgressbar;
+    private RecyclerView mRecyclerview;
+    private LinearLayoutManager mLinearlayoutmanager;
     int getting = 0;
     private Thread network_thread = null;
 
@@ -53,20 +53,20 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ebooks);
 
-        m_back_imageview = findViewById(R.id.fragment_about_fp_back_imageview);
-        m_reload_imageview = findViewById(R.id.reloadbooks_imageview);
-        m_loading_progressbar = findViewById(R.id.loading_progressbar);
-        m_recyclerview = findViewById(R.id.books_holder_recyclerview);
+        mBackImageview = findViewById(R.id.fragment_about_fp_back_imageview);
+        mReloadImageview = findViewById(R.id.reloadbooks_imageview);
+        mLoadingProgressbar = findViewById(R.id.loading_progressbar);
+        mRecyclerview = findViewById(R.id.books_holder_recyclerview);
 
 
-        m_linearlayoutmanager = new LinearLayoutManager(EbooksActivity.this);
+        mLinearlayoutmanager = new LinearLayoutManager(EbooksActivity.this);
 
-        m_recyclerview.setItemViewCacheSize(20);
-        m_recyclerview.setDrawingCacheEnabled(true);
-        m_recyclerview.setHasFixedSize(true);
-        m_recyclerview.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        m_recyclerview.setLayoutManager(m_linearlayoutmanager);
-        m_recyclerview.setAdapter(new RecyclerViewAdapter());
+        mRecyclerview.setItemViewCacheSize(20);
+        mRecyclerview.setDrawingCacheEnabled(true);
+        mRecyclerview.setHasFixedSize(true);
+        mRecyclerview.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        mRecyclerview.setLayoutManager(mLinearlayoutmanager);
+        mRecyclerview.setAdapter(new RecyclerViewAdapter());
 
         network_thread = new Thread(new Runnable() {
             @Override
@@ -76,15 +76,15 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
         });
         network_thread.start();
 
-        m_reload_imageview.setOnClickListener(this);
-        m_back_imageview.setOnClickListener(this);
+        mReloadImageview.setOnClickListener(this);
+        mBackImageview.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == m_back_imageview.getId()){
+        if(view.getId() == mBackImageview.getId()){
             onBackPressed();
-        } else if(view.getId() == m_reload_imageview.getId()){
+        } else if(view.getId() == mReloadImageview.getId()){
             network_thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -99,7 +99,13 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
 
     private void allOnClickHandlers(View view, int position){
         if(view.getId() == R.id.list_item_book_parent_holder){
-            Intent intent = new Intent(getApplicationContext(), BookDetailsActivity.class);
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_COVER_URL, BooksListDataGenerator.getAllData().get(position).getBook_cover_photo());
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE, BooksListDataGenerator.getAllData().get(position).getBook_title());
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_AUTHOR, BooksListDataGenerator.getAllData().get(position).getBook_author());
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_DESCRIPTION, BooksListDataGenerator.getAllData().get(position).getBook_description_long());
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_PRICE, BooksListDataGenerator.getAllData().get(position).getBook_cost());
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE, BooksListDataGenerator.getAllData().get(position).getBook_summary_cost());
+            Intent intent = new Intent(getApplicationContext(), EbookDetailsActivity.class);
             startActivity(intent);
         }
     }
@@ -180,11 +186,11 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    m_reload_imageview.setVisibility(View.INVISIBLE);
-                    m_recyclerview.setVisibility(View.INVISIBLE);
-                    m_loading_progressbar.setVisibility(View.VISIBLE);
+                    mReloadImageview.setVisibility(View.INVISIBLE);
+                    mRecyclerview.setVisibility(View.INVISIBLE);
+                    mLoadingProgressbar.setVisibility(View.VISIBLE);
                     BooksListDataGenerator.getAllData().clear();
-                    m_recyclerview.getAdapter().notifyDataSetChanged();
+                    mRecyclerview.getAdapter().notifyDataSetChanged();
                 }
             });
 
@@ -210,7 +216,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    m_recyclerview.getAdapter().notifyDataSetChanged();
+                                                    mRecyclerview.getAdapter().notifyDataSetChanged();
                                                 }
                                             });
                                             for (int i = 0; i < linkupsSuggestionsArray.length(); i++) {
@@ -230,17 +236,18 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                                                 mine1.setBook_audio(k.getString("book_audio"));
                                                 mine1.setBook_summary_audio(k.getString("book_summary_audio"));
                                                 mine1.setBook_cost(k.getString("book_cost_usd"));
+                                                mine1.setBook_summary_cost(k.getString("book_summary_cost_usd"));
                                                 //mine1.setCreated_at(k.getString("created_at"));
                                                 BooksListDataGenerator.addOneData(mine1);
 
                                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        if (!EbooksActivity.this.isFinishing() && m_recyclerview != null) {
-                                                            m_recyclerview.getAdapter().notifyItemInserted(BooksListDataGenerator.getAllData().size());
-                                                            m_loading_progressbar.setVisibility(View.INVISIBLE);
-                                                            m_reload_imageview.setVisibility(View.INVISIBLE);
-                                                            m_recyclerview.setVisibility(View.VISIBLE);
+                                                        if (!EbooksActivity.this.isFinishing() && mRecyclerview != null) {
+                                                            mRecyclerview.getAdapter().notifyItemInserted(BooksListDataGenerator.getAllData().size());
+                                                            mLoadingProgressbar.setVisibility(View.INVISIBLE);
+                                                            mReloadImageview.setVisibility(View.INVISIBLE);
+                                                            mRecyclerview.setVisibility(View.VISIBLE);
                                                         }
                                                     }
                                                 });
@@ -250,26 +257,26 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    m_loading_progressbar.setVisibility(View.INVISIBLE);
-                                                    m_recyclerview.setVisibility(View.INVISIBLE);
-                                                    m_reload_imageview.setVisibility(View.VISIBLE);
+                                                    mLoadingProgressbar.setVisibility(View.INVISIBLE);
+                                                    mRecyclerview.setVisibility(View.INVISIBLE);
+                                                    mReloadImageview.setVisibility(View.VISIBLE);
                                                     Toast.makeText(getApplicationContext(), "No Audios found", Toast.LENGTH_LONG).show();
                                                 }
                                             });
                                         }
 
                                     } else {
-                                        m_recyclerview.setVisibility(View.INVISIBLE);
-                                        m_loading_progressbar.setVisibility(View.INVISIBLE);
-                                        m_reload_imageview.setVisibility(View.VISIBLE);
+                                        mRecyclerview.setVisibility(View.INVISIBLE);
+                                        mLoadingProgressbar.setVisibility(View.INVISIBLE);
+                                        mReloadImageview.setVisibility(View.VISIBLE);
                                         Toast.makeText(getApplicationContext(), response_json_object.getString("message"), Toast.LENGTH_LONG).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                     Toast.makeText(getApplicationContext(), "An unexpected error occurred.", Toast.LENGTH_LONG).show();
-                                    m_loading_progressbar.setVisibility(View.INVISIBLE);
-                                    m_recyclerview.setVisibility(View.INVISIBLE);
-                                    m_reload_imageview.setVisibility(View.VISIBLE);
+                                    mLoadingProgressbar.setVisibility(View.INVISIBLE);
+                                    mRecyclerview.setVisibility(View.INVISIBLE);
+                                    mReloadImageview.setVisibility(View.VISIBLE);
                                 }
                             }
                         }
@@ -278,9 +285,9 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(getApplicationContext(), "Check your internet connection and try again", Toast.LENGTH_LONG).show();
-                            m_loading_progressbar.setVisibility(View.INVISIBLE);
-                            m_recyclerview.setVisibility(View.INVISIBLE);
-                            m_reload_imageview.setVisibility(View.VISIBLE);
+                            mLoadingProgressbar.setVisibility(View.INVISIBLE);
+                            mRecyclerview.setVisibility(View.INVISIBLE);
+                            mReloadImageview.setVisibility(View.VISIBLE);
                         }
                     }) {
 
