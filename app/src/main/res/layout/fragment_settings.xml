@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/white_background_pressed_darker"
                 android:paddingBottom="5dp"
-                app:layout_constraintBottom_toTopOf="@+id/journeys_holder_contrainlayout"
+                app:layout_constraintBottom_toTopOf="@+id/ebooks_holder_contrainlayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -95,70 +95,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/subscription_info_textview" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/journeys_holder_contrainlayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:background="@drawable/white_background_pressed_darker"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subscription_holder_contrainlayout"
-                app:layout_constraintBottom_toTopOf="@+id/ebooks_holder_contrainlayout">
-
-                <ImageView
-                    android:id="@+id/journeys_imageview"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginBottom="9dp"
-                    android:contentDescription="@string/none"
-                    android:src="@drawable/journey"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintEnd_toStartOf="@+id/journeys_textview"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <TextView
-                    android:id="@+id/journeys_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="9dp"
-                    android:text="Journeys"
-                    android:textColor="@color/colorDarkBlue"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/journeys_imageview"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/journeys_info_textview"
-                    />
-
-                <TextView
-                    android:id="@+id/journeys_info_textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="9dp"
-                    android:text="Start a learning journey"
-                    android:textColor="@color/colorLightGray"
-                    android:textSize="13sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/journeys_imageview"
-                    app:layout_constraintTop_toBottomOf="@+id/journeys_textview" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ebooks_holder_contrainlayout"
                 android:layout_width="match_parent"
@@ -167,8 +103,8 @@
                 android:background="@drawable/white_background_pressed_darker"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/journeys_holder_contrainlayout"
-                app:layout_constraintBottom_toTopOf="@+id/mentors_holder_contrainlayout">
+                app:layout_constraintTop_toBottomOf="@+id/subscription_holder_contrainlayout"
+                app:layout_constraintBottom_toTopOf="@+id/journeys_holder_contrainlayout">
 
                 <ImageView
                     android:id="@+id/ebooks_imageview"
@@ -222,16 +158,80 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/mentors_holder_contrainlayout"
+                android:id="@+id/journeys_holder_contrainlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
-                android:visibility="visible"
                 android:background="@drawable/white_background_pressed_darker"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ebooks_holder_contrainlayout"
-                app:layout_constraintBottom_toTopOf="@+id/contact_fp_holder_contrainlayout">
+                app:layout_constraintBottom_toTopOf="@+id/mentors_holder_contrainlayout">
+
+                <ImageView
+                    android:id="@+id/journeys_imageview"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="9dp"
+                    android:contentDescription="@string/none"
+                    android:src="@drawable/journey"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintEnd_toStartOf="@+id/journeys_textview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/journeys_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="9dp"
+                    android:text="Journeys"
+                    android:textColor="@color/colorDarkBlue"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/journeys_imageview"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/journeys_info_textview"
+                    />
+
+                <TextView
+                    android:id="@+id/journeys_info_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="9dp"
+                    android:text="We are working to bring journeys"
+                    android:textColor="@color/colorLightGray"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/journeys_imageview"
+                    app:layout_constraintTop_toBottomOf="@+id/journeys_textview" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mentors_holder_contrainlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_background_pressed_darker"
+                android:paddingBottom="5dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/contact_fp_holder_contrainlayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ebooks_holder_contrainlayout"
+                app:layout_constraintVertical_bias="0.0">
 
                 <ImageView
                     android:id="@+id/mentors_imageview"
@@ -242,46 +242,44 @@
                     android:layout_marginBottom="9dp"
                     android:contentDescription="@string/none"
                     android:src="@drawable/mentor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/mentors_textview"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintEnd_toStartOf="@+id/mentors_textview"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/mentors_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="9dp"
+                    android:layout_marginEnd="8dp"
                     android:text="Mentors"
                     android:textColor="@color/colorDarkBlue"
                     android:textSize="17sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/mentors_imageview"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/mentors_info_textview"
-                    />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/mentors_imageview"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/mentors_info_textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="24dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginBottom="9dp"
                     android:text="We are working to bring mentorships"
                     android:textColor="@color/colorLightGray"
                     android:textSize="13sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/mentors_imageview"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mentors_textview"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/mentors_imageview"
+                    app:layout_constraintTop_toBottomOf="@+id/mentors_textview" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

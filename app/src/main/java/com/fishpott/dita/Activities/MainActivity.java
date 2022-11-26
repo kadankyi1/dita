@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         pageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragmentsList);
         mFragmentsHolderViewPager.setAdapter(pageAdapter);
-        mFragmentsHolderViewPager.setCurrentItem(1);
+        mFragmentsHolderViewPager.setCurrentItem(0);
 
         mSettingsIconImageView.setOnClickListener(this);
         mInfoImageView.setOnClickListener(this);
