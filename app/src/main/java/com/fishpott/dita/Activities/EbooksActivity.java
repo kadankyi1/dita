@@ -14,6 +14,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -41,11 +42,13 @@ import java.util.Map;
 
 public class EbooksActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView mBackImageview, mReloadImageview;
+    private ImageView mBackImageview, mReloadImageview, mSearchImageView;
     private ProgressBar mLoadingProgressbar;
     private RecyclerView mRecyclerview;
     private LinearLayoutManager mLinearlayoutmanager;
+    private EditText mKeywordEditText;
     int getting = 0;
+    private String keyword = "";
     private Thread network_thread = null;
 
     @Override
@@ -57,7 +60,8 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
         mReloadImageview = findViewById(R.id.reloadbooks_imageview);
         mLoadingProgressbar = findViewById(R.id.loading_progressbar);
         mRecyclerview = findViewById(R.id.books_holder_recyclerview);
-
+        mSearchImageView = findViewById(R.id.fragment_about_search_imageview);
+        mKeywordEditText = findViewById(R.id.activity_ebooks_search_edittext);
 
         mLinearlayoutmanager = new LinearLayoutManager(EbooksActivity.this);
 
@@ -71,13 +75,14 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
         network_thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                call_audio_list_api("Bearer " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN));
+                call_audio_list_api("Bearer " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN), keyword);
             }
         });
         network_thread.start();
 
         mReloadImageview.setOnClickListener(this);
         mBackImageview.setOnClickListener(this);
+        mSearchImageView.setOnClickListener(this);
     }
 
     @Override
@@ -88,7 +93,16 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
             network_thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    call_audio_list_api("Bearer " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN));
+                    call_audio_list_api("Bearer " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN), keyword);
+                }
+            });
+            network_thread.start();
+        } else if(view.getId() == mSearchImageView.getId()){
+            keyword =  mKeywordEditText.getText().toString();
+            network_thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    call_audio_list_api("Bearer " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN), keyword);
                 }
             });
             network_thread.start();
@@ -105,6 +119,8 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_DESCRIPTION, BooksListDataGenerator.getAllData().get(position).getBook_description_long());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_PRICE, BooksListDataGenerator.getAllData().get(position).getBook_cost());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE, BooksListDataGenerator.getAllData().get(position).getBook_summary_cost());
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL, BooksListDataGenerator.getAllData().get(position).getBook_pdf());
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL, BooksListDataGenerator.getAllData().get(position).getBook_summary_pdf());
             Intent intent = new Intent(getApplicationContext(), EbookDetailsActivity.class);
             startActivity(intent);
         }
@@ -180,7 +196,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    private void call_audio_list_api(final String token){
+    private void call_audio_list_api(final String token, final String kw){
 
         if(!this.isFinishing() && getApplicationContext() != null){
             new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -194,14 +210,15 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                 }
             });
 
-            Config.show_log_in_console("AudiosListAct", "\n token: " + token);
+            Config.show_log_in_console("BooksListAct", "\n token: " + token);
+            Config.show_log_in_console("BooksListAct", "\n keyword: " + kw);
 
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.LINK_VERIFY_GET_BOOKS,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.LINK_GET_BOOKS,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Config.show_log_in_console("AudiosListAct", "response: " +  response);
+                            Config.show_log_in_console("BooksListAct", "response: " +  response);
                             if(!EbooksActivity.this.isFinishing()){
                                 try {
                                     JSONObject response_json_object = new JSONObject(response);
@@ -209,7 +226,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                                     if(response_json_object.getString("status").equalsIgnoreCase("success")){
                                         JSONArray linkupsSuggestionsArray = response_json_object.getJSONArray("data");
 
-                                        Config.show_log_in_console("AudiosListAct", "linkupsSuggestionsArray: " + linkupsSuggestionsArray.toString());
+                                        Config.show_log_in_console("BooksListAct", "linkupsSuggestionsArray: " + linkupsSuggestionsArray.toString());
                                         if (linkupsSuggestionsArray.length() > 0) {
                                             BooksListDataGenerator.getAllData().clear();
 
@@ -260,7 +277,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                                                     mLoadingProgressbar.setVisibility(View.INVISIBLE);
                                                     mRecyclerview.setVisibility(View.INVISIBLE);
                                                     mReloadImageview.setVisibility(View.VISIBLE);
-                                                    Toast.makeText(getApplicationContext(), "No Audios found", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(getApplicationContext(), "No Books found", Toast.LENGTH_LONG).show();
                                                 }
                                             });
                                         }
@@ -284,6 +301,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            Config.show_log_in_console("BooksListAct", "error: " +  error.getMessage());
                             Toast.makeText(getApplicationContext(), "Check your internet connection and try again", Toast.LENGTH_LONG).show();
                             mLoadingProgressbar.setVisibility(View.INVISIBLE);
                             mRecyclerview.setVisibility(View.INVISIBLE);
@@ -295,7 +313,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> map = new HashMap<>();
-                    map.put("kw", "");
+                    map.put("kw", kw);
                     map.put("app_type", "ANDROID");
                     map.put("app_version_code", String.valueOf(Config.getAppVersionCode(getApplicationContext())));
                     Config.show_log_in_console("LoginActivity", "Map: " +  map.toString());

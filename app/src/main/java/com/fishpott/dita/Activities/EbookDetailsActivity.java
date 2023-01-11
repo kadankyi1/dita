@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -50,11 +51,23 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
 
 
         mBackImageview.setOnClickListener(this);
+        mReadFullButton.setOnClickListener(this);
+        mReadSummaryButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         if(view.getId() == mBackImageview.getId()){
+            onBackPressed();
+        } else if(view.getId() == mReadFullButton.getId()){
+            // USING PDF VIEWER
+            Intent intent = new Intent(getApplicationContext(), BookTextReaderActivity.class);
+            startActivity(intent);
+
+             // USING A WEB-VIEW
+            //Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+            //startActivity(intent);
+        } else if(view.getId() == mReadSummaryButton.getId()){
             onBackPressed();
         }
     }

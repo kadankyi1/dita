@@ -6,7 +6,7 @@
     android:id="@+id/root_webview_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.WebViewActivity">
+    tools:context=".Activities.BookTextReaderActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/activity_webview_guideline_h_1"
@@ -66,7 +66,7 @@
                 android:layout_toLeftOf="@id/activity_webview_constraint2_title_textview"
                 android:contentDescription="@string/none"
                 app:srcCompat="@drawable/ic_search"
-                app:tint="@color/white" />
+                app:tint="@color/colorLighterGray" />
 
 
             <TextView
@@ -77,7 +77,7 @@
                 android:text="Reader"
                 android:maxLength="20"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/colorLighterGray"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -112,6 +112,7 @@
             app:tint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--
     <WebView
         android:id="@+id/activity_webview_webview"
         android:layout_width="0dp"
@@ -120,5 +121,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_webview_guideline_h_1" />
+    -->
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/mypdfView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_webview_guideline_h_1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

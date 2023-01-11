@@ -12,7 +12,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,12 +27,15 @@ import com.bumptech.glide.request.target.Target;
 import com.fishpott.dita.Activities.WebViewActivity;
 import com.fishpott.dita.R;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class Config {
 
     // DEBUG
     public static Boolean ALLOW_LOGGING = true;
-    public static final String CURRENT_HTTP_IN_USE = "http://";
-    public static final String CURRENT_ENVIRONMENT_DOMAIN_IN_USE = "10.0.2.2:3000";
+    public static final String CURRENT_HTTP_IN_USE = "https://";
+    public static final String CURRENT_ENVIRONMENT_DOMAIN_IN_USE = "dita.fishpott.com";
 
     // LIVE
     //public static Boolean ALLOW_LOGGING = false;
@@ -42,7 +44,7 @@ public class Config {
 
     public static final String LINK_SEND_LOGIN_CODE = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/send-login-code";
     public static final String LINK_VERIFY_LOGIN_CODE = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/verify-login-code";
-    public static final String LINK_VERIFY_GET_BOOKS = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/get-books";
+    public static final String LINK_GET_BOOKS = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/get-books";
 
 
     public static final String WEBVIEW_KEY_URL = "URL";
@@ -57,6 +59,8 @@ public class Config {
     public static final String SHARED_PREF_KEY_BOOK_FULL_DESCRIPTION = "SHARED_PREF_KEY_BOOK_FULL_DESCRIPTION";
     public static final String SHARED_PREF_KEY_BOOK_PRICE = "SHARED_PREF_KEY_BOOK_PRICE";
     public static final String SHARED_PREF_KEY_BOOK_SUMMARY_PRICE = "SHARED_PREF_KEY_BOOK_SUMMARY_PRICE";
+    public static final String SHARED_PREF_KEY_BOOK_FULL_URL = "SHARED_PREF_KEY_BOOK_FULL_URL";
+    public static final String SHARED_PREF_KEY_BOOK_SUMMARY_URL = "SHARED_PREF_KEY_BOOK_SUMMARY_URL";
 
 
     public static void show_log_in_console(String title, String description){
@@ -316,4 +320,35 @@ public class Config {
         }
     }
 
+
+
+    //GETTING THE COMPONENTS OF A URL
+    public static String getUrlComponent(String u, int getType){
+        URL url = null;
+        String componentReturned = "";
+        try {
+            url = new URL(u);
+            if(getType == 1){
+                //GETTING DOMAIN NAME/HOST
+                componentReturned = url.getHost();
+            } else if(getType == 2){
+                //GETTING PROTOCOL
+                componentReturned = url.getProtocol();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return componentReturned;
+    }
+
+    // REPLACE WWW. AND HTTP IN URL
+    public static String removeWwwAndHttpFromUrl(String url){
+        return url.replaceFirst("^(http[s]?://www\\.|http[s]?://|www\\.)","");
+    }
+
+
+    public static String removeCharacters(String text, String allRemovingCharacters){
+        return text.replaceAll("[" + allRemovingCharacters + "]", "");
+    }
 }

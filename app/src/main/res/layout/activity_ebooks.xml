@@ -31,22 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/fragment_about_guideline_v_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.15" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/fragment_about_guideline_v_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.85" />
-
-
         <ImageView
             android:id="@+id/fragment_about_fp_back_imageview"
             android:layout_width="25dp"
@@ -59,6 +43,51 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/forgot_password_arrow_back"
+            app:tint="@color/colorWhite" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fragment_about_guideline_v_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+
+            <EditText
+                android:id="@+id/activity_ebooks_search_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:theme="@style/inBlueBackGround"
+                android:hint="Keyword"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/fragment_about_guideline_v_4"
+                app:layout_constraintStart_toEndOf="@+id/fragment_about_guideline_v_3"
+                app:layout_constraintTop_toTopOf="parent"
+                android:inputType="text"
+                android:labelFor="@id/activity_login_code_edit_text"
+                android:textColor="@color/colorWhite" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fragment_about_guideline_v_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+
+        <ImageView
+            android:id="@+id/fragment_about_search_imageview"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="@string/none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_about_guideline_v_4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_search"
             app:tint="@color/colorWhite" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
