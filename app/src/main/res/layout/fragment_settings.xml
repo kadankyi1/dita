@@ -72,7 +72,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="9dp"
-                    android:text="Remaining access time to premium membership"
+                    android:text="Remaining time to premium membership"
                     android:textColor="@color/colorLightGray"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toTopOf="@+id/grey_line_view"
@@ -161,13 +161,13 @@
                 android:id="@+id/journeys_holder_contrainlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:paddingBottom="5dp"
+                android:visibility="gone"
                 android:background="@drawable/white_background_pressed_darker"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ebooks_holder_contrainlayout"
-                app:layout_constraintBottom_toTopOf="@+id/mentors_holder_contrainlayout">
+                app:layout_constraintBottom_toTopOf="@+id/subscribe_holder_contrainlayout">
 
                 <ImageView
                     android:id="@+id/journeys_imageview"
@@ -222,6 +222,70 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/subscribe_holder_contrainlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_background_pressed_darker"
+                android:paddingBottom="5dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/mentors_holder_contrainlayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/journeys_holder_contrainlayout"
+                app:layout_constraintVertical_bias="0.0">
+
+                <ImageView
+                    android:id="@+id/subscribe_imageview"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="9dp"
+                    android:contentDescription="@string/none"
+                    android:src="@drawable/premium"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/subscribe_textview"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/subscribe_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Subscribe"
+                    android:textColor="@color/colorDarkBlue"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/subscribe_info_textview"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/subscribe_imageview"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/subscribe_info_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="9dp"
+                    android:text="Get premium access to content"
+                    android:textColor="@color/colorLightGray"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/subscribe_imageview"
+                    app:layout_constraintTop_toBottomOf="@+id/subscribe_textview" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mentors_holder_contrainlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -231,7 +295,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/contact_fp_holder_contrainlayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ebooks_holder_contrainlayout"
+                app:layout_constraintTop_toBottomOf="@+id/subscribe_holder_contrainlayout"
                 app:layout_constraintVertical_bias="0.0">
 
                 <ImageView

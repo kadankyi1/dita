@@ -27,7 +27,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private View view = null;
     private ConstraintLayout mSubscriptionHolderConstraintLayout, mJourneysHolderConstraintLayout, mEbooksHolderConstraintLayout,
-            mMentorsHolderConstraintLayout, mContactHolderConstraintLayout;
+            mMentorsHolderConstraintLayout, mContactHolderConstraintLayout, mSubscribeHolderConstraintLayout;
     private TextView mEmailTextView;
 
     public SettingsFragment() {
@@ -54,6 +54,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         mJourneysHolderConstraintLayout = view.findViewById(R.id.journeys_holder_contrainlayout);
         mEbooksHolderConstraintLayout = view.findViewById(R.id.ebooks_holder_contrainlayout);
         mMentorsHolderConstraintLayout = view.findViewById(R.id.mentors_holder_contrainlayout);
+        mSubscribeHolderConstraintLayout = view.findViewById(R.id.subscribe_holder_contrainlayout);
         mContactHolderConstraintLayout = view.findViewById(R.id.contact_fp_holder_contrainlayout);
         mEmailTextView = view.findViewById(R.id.myemail_textview);
 
@@ -63,6 +64,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         mJourneysHolderConstraintLayout.setOnClickListener(this);
         mEbooksHolderConstraintLayout.setOnClickListener(this);
         mMentorsHolderConstraintLayout.setOnClickListener(this);
+        mSubscribeHolderConstraintLayout.setOnClickListener(this);
         mContactHolderConstraintLayout.setOnClickListener(this);
 
         return view;
@@ -78,6 +80,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             Config.openActivity(getActivity(), EbooksActivity.class, 0, 0, 0, "", "");
         } else if(view.getId() == mMentorsHolderConstraintLayout.getId()){
             Config.openActivity(getActivity(), MentorsActivity.class, 0, 0, 0, "", "");
+        } else if(view.getId() == mSubscribeHolderConstraintLayout.getId()){
+            Config.openActivity(getActivity(), SubscriptionActivity.class, 0, 0, 0, "", "");
         } else if(view.getId() == mContactHolderConstraintLayout.getId()){
             Config.openActivity(getActivity(), ContactDitaActivity.class, 0, 0, 0, "", "");
         }
