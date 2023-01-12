@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,25 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
         });
         network_thread.start();
 
+        mKeywordEditText.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    keyword =  mKeywordEditText.getText().toString();
+                    network_thread = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            call_audio_list_api("Bearer " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN), keyword);
+                        }
+                    });
+                    network_thread.start();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         mReloadImageview.setOnClickListener(this);
         mBackImageview.setOnClickListener(this);
         mSearchImageView.setOnClickListener(this);
@@ -148,7 +168,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
         public class AudioViewHolder extends RecyclerView.ViewHolder  {
             private ConstraintLayout m_parent_holder_constraintlayout, m_image_holder_constraintlayout;
             private AppCompatImageView m_audio_image;
-            private TextView m_title_textview, m_price_textview;
+            private TextView m_title_textview, m_price_textview, m_author_textview, m_short_desc_textview, m_summary_avail_textview;
 
             private View.OnClickListener innerClickListener = new View.OnClickListener() {
                 @Override
@@ -164,12 +184,15 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                 m_audio_image = v.findViewById(R.id.list_item_book_image_imageview);
                 m_title_textview = v.findViewById(R.id.list_item_book_title_textview);
                 m_price_textview = v.findViewById(R.id.list_item_book_price_textview);
+                m_summary_avail_textview = v.findViewById(R.id.list_item_book_summary_textview);
+                m_author_textview = v.findViewById(R.id.list_item_book_author_textview);
+                m_short_desc_textview = v.findViewById(R.id.list_item_book_short_description_textview);
 
                 m_parent_holder_constraintlayout.setOnClickListener(innerClickListener);
-                m_image_holder_constraintlayout.setOnClickListener(innerClickListener);
-                m_audio_image.setOnClickListener(innerClickListener);
-                m_title_textview.setOnClickListener(innerClickListener);
-                m_price_textview.setOnClickListener(innerClickListener);
+                //m_image_holder_constraintlayout.setOnClickListener(innerClickListener);
+                //m_audio_image.setOnClickListener(innerClickListener);
+                //m_title_textview.setOnClickListener(innerClickListener);
+                //m_price_textview.setOnClickListener(innerClickListener);
             }
         }
 
@@ -184,7 +207,15 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                 ((AudioViewHolder) holder).m_audio_image.setImageResource(R.drawable.cover);
             }
             ((AudioViewHolder) holder).m_title_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_title());
+            ((AudioViewHolder) holder).m_author_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_author());
+            ((AudioViewHolder) holder).m_short_desc_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_description_short());
             ((AudioViewHolder) holder).m_price_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_cost());
+            if(BooksListDataGenerator.getAllData().get(position).getBook_summary_pdf().trim().equalsIgnoreCase("")){
+                ((AudioViewHolder) holder).m_summary_avail_textview.setVisibility(View.GONE);
+            } else {
+                ((AudioViewHolder) holder).m_summary_avail_textview.setVisibility(View.VISIBLE);
+            }
+            //((AudioViewHolder) holder).m_summary_avail_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_cost());
 
         }
 

@@ -172,21 +172,22 @@
             android:textColor="@color/colorLightGray"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/activity_ebookdetails_guideline_v_6"
-            app:layout_constraintTop_toBottomOf="@+id/list_item_book_author_textview"  />
+            app:layout_constraintTop_toBottomOf="@+id/list_item_book_price_textview"
+            app:layout_constraintStart_toStartOf="@+id/activity_ebookdetails_guideline_v_6"  />
 
 
         <TextView
             android:id="@+id/list_item_book_price_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:text="Free"
             android:textColor="@color/colorBlack"
-            android:textSize="13sp"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/activity_ebookdetails_guideline_v_6"
-            app:layout_constraintTop_toBottomOf="@+id/list_item_book_short_description_textview"  />
+            app:layout_constraintTop_toBottomOf="@+id/list_item_book_author_textview" />
 
 
         <androidx.appcompat.widget.AppCompatButton
