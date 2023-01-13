@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dita">
         <activity
-            android:name=".PaymentActivity"
+            android:name=".Activities.MobileMoneyPaymentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

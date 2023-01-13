@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fishpott.dita.ListDataGenerators.BooksListDataGenerator;
 import com.fishpott.dita.R;
@@ -57,18 +58,15 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         mBookPriceTextView.setText(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_PRICE).trim());
 
 
+        findViewById(R.id.fragment_signup_personalstage1_gender_male_imageview).setOnClickListener(this);
+        findViewById(R.id.fragment_signup_personalstage1_gender_male_textview).setOnClickListener(this);
+        findViewById(R.id.fragment_signup_personalstage1_gender_female_imageview).setOnClickListener(this);
+        findViewById(R.id.fragment_signup_personalstage1_gender_female_textview).setOnClickListener(this);
         mBackImageview.setOnClickListener(this);
         mReadFullButton.setOnClickListener(this);
         mReadSummaryButton.setOnClickListener(this);
         mMaleGenderRadioButton.setOnClickListener(this);
         mFemaleGenderRadioButton.setOnClickListener(this);
-
-        if(BooksListDataGenerator.getAllData().get(Config.getSharedPreferenceInt(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_POSITION_IN_LIST)).getBook_pdf().trim().equalsIgnoreCase("")){
-            mReadFullButton.setVisibility(View.INVISIBLE);
-        }
-        if(BooksListDataGenerator.getAllData().get(Config.getSharedPreferenceInt(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_POSITION_IN_LIST)).getBook_summary_pdf().trim().equalsIgnoreCase("")){
-            mReadSummaryButton.setVisibility(View.INVISIBLE);
-        }
 
     }
 
@@ -94,11 +92,15 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
             if(!bookOrSummary.trim().equalsIgnoreCase("")){
                 Intent intent = new Intent(getApplicationContext(), MobileMoneyPaymentActivity.class);
                 startActivity(intent);
+            } else {
+                Toast.makeText(getApplicationContext(), "Choose if you are buying a full book or a summary", Toast.LENGTH_LONG).show();
             }
         } else if(view.getId() == mReadSummaryButton.getId()){
             if(!bookOrSummary.trim().equalsIgnoreCase("")){
                 Intent intent = new Intent(getApplicationContext(), MobileMoneyPaymentActivity.class);
                 startActivity(intent);
+            } else {
+                Toast.makeText(getApplicationContext(), "Choose if you are buying a full book or a summary", Toast.LENGTH_LONG).show();
             }
         } else if(view.getId() == R.id.fragment_signup_personalstage1_gender_male_radiobutton){
             setMaleClicked();
