@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.fishpott.dita.ListDataGenerators.BooksListDataGenerator;
 import com.fishpott.dita.R;
 import com.fishpott.dita.Util.Config;
 
@@ -19,9 +22,11 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private ImageView mBackImageview, mReloadImageview, mBookCoverImageView;
     private TextView mBookTitleTextView, mBookAuthorTextView, mBookPriceTextView, mBookLongDescriptionTextView;
-    private AppCompatButton mReadFullButton, mReadSummaryButton;
+    private RadioButton mMaleGenderRadioButton, mFemaleGenderRadioButton;
+    private Button mReadFullButton, mReadSummaryButton;
     private ProgressBar mLoadingProgressbar;
     int getting = 0;
+    private String bookOrSummary = "";
     private Thread network_thread = null;
 
     @Override
@@ -39,6 +44,8 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         mBookPriceTextView = findViewById(R.id.list_item_book_price_textview);
         mReadFullButton = findViewById(R.id.activity_ebookdetails_readfull_button);
         mReadSummaryButton = findViewById(R.id.activity_ebookdetails_readsummary_button);
+        mMaleGenderRadioButton = findViewById(R.id.fragment_signup_personalstage1_gender_male_radiobutton);
+        mFemaleGenderRadioButton = findViewById(R.id.fragment_signup_personalstage1_gender_female_radiobutton);
 
         if(!EbookDetailsActivity.this.isFinishing() && !Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_COVER_URL).trim().equalsIgnoreCase("")
         ){
@@ -53,6 +60,29 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         mBackImageview.setOnClickListener(this);
         mReadFullButton.setOnClickListener(this);
         mReadSummaryButton.setOnClickListener(this);
+        mMaleGenderRadioButton.setOnClickListener(this);
+        mFemaleGenderRadioButton.setOnClickListener(this);
+
+        if(BooksListDataGenerator.getAllData().get(Config.getSharedPreferenceInt(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_POSITION_IN_LIST)).getBook_pdf().trim().equalsIgnoreCase("")){
+            mReadFullButton.setVisibility(View.INVISIBLE);
+        }
+        if(BooksListDataGenerator.getAllData().get(Config.getSharedPreferenceInt(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_POSITION_IN_LIST)).getBook_summary_pdf().trim().equalsIgnoreCase("")){
+            mReadSummaryButton.setVisibility(View.INVISIBLE);
+        }
+
+    }
+
+
+    public void setMaleClicked(){
+        bookOrSummary = "BOOK";
+        Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED, "BOOK");
+        mFemaleGenderRadioButton.setChecked(false);
+    }
+
+    public void setFemaleClicked(){
+        bookOrSummary = "SUMMARY";
+        Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED, "SUMMARY");
+        mMaleGenderRadioButton.setChecked(false);
     }
 
     @Override
@@ -61,14 +91,31 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
             onBackPressed();
         } else if(view.getId() == mReadFullButton.getId()){
             // USING PDF VIEWER
-            Intent intent = new Intent(getApplicationContext(), BookTextReaderActivity.class);
-            startActivity(intent);
-
-             // USING A WEB-VIEW
-            //Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
-            //startActivity(intent);
+            if(!bookOrSummary.trim().equalsIgnoreCase("")){
+                Intent intent = new Intent(getApplicationContext(), MobileMoneyPaymentActivity.class);
+                startActivity(intent);
+            }
         } else if(view.getId() == mReadSummaryButton.getId()){
-            onBackPressed();
+            if(!bookOrSummary.trim().equalsIgnoreCase("")){
+                Intent intent = new Intent(getApplicationContext(), MobileMoneyPaymentActivity.class);
+                startActivity(intent);
+            }
+        } else if(view.getId() == R.id.fragment_signup_personalstage1_gender_male_radiobutton){
+            setMaleClicked();
+        } else if(view.getId() == R.id.fragment_signup_personalstage1_gender_male_textview){
+            mMaleGenderRadioButton.performClick();
+            setMaleClicked();
+        } else if(view.getId() == R.id.fragment_signup_personalstage1_gender_male_imageview){
+            mMaleGenderRadioButton.performClick();
+            setMaleClicked();
+        } else if(view.getId() == R.id.fragment_signup_personalstage1_gender_female_radiobutton){
+            setFemaleClicked();
+        } else if(view.getId() == R.id.fragment_signup_personalstage1_gender_female_textview){
+            mFemaleGenderRadioButton.performClick();
+            setFemaleClicked();
+        } else if(view.getId() == R.id.fragment_signup_personalstage1_gender_female_imageview){
+            mFemaleGenderRadioButton.performClick();
+            setFemaleClicked();
         }
     }
 }

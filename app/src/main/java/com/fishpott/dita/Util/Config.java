@@ -54,6 +54,7 @@ public class Config {
     public static final String SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN = "USER_PASSWORD";
 
 
+    public static final String SHARED_PREF_KEY_BOOK_POSITION_IN_LIST = "SHARED_PREF_KEY_BOOK_POSITION_IN_LIST";
     public static final String SHARED_PREF_KEY_BOOK_COVER_URL = "SHARED_PREF_KEY_BOOK_COVER_URL";
     public static final String SHARED_PREF_KEY_BOOK_TITLE = "SHARED_PREF_KEY_BOOK_TITLE";
     public static final String SHARED_PREF_KEY_BOOK_AUTHOR = "SHARED_PREF_KEY_BOOK_AUTHOR";
@@ -62,6 +63,7 @@ public class Config {
     public static final String SHARED_PREF_KEY_BOOK_SUMMARY_PRICE = "SHARED_PREF_KEY_BOOK_SUMMARY_PRICE";
     public static final String SHARED_PREF_KEY_BOOK_FULL_URL = "SHARED_PREF_KEY_BOOK_FULL_URL";
     public static final String SHARED_PREF_KEY_BOOK_SUMMARY_URL = "SHARED_PREF_KEY_BOOK_SUMMARY_URL";
+    public static final String SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED = "SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED";
 
 
     public static void show_log_in_console(String title, String description){

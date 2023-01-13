@@ -133,6 +133,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
 
     private void allOnClickHandlers(View view, int position){
         if(view.getId() == R.id.list_item_book_parent_holder){
+            Config.setSharedPreferenceInt(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_POSITION_IN_LIST, position);
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_COVER_URL, BooksListDataGenerator.getAllData().get(position).getBook_cover_photo());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE, BooksListDataGenerator.getAllData().get(position).getBook_title());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_AUTHOR, BooksListDataGenerator.getAllData().get(position).getBook_author());
