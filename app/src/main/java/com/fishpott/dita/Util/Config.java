@@ -75,6 +75,7 @@ public class Config {
     public static final String SHARED_PREF_KEY_BOOK_FULL_PURCHASED = "SHARED_PREF_KEY_BOOK_FULL_PURCHASED";
     public static final String SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED = "SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED";
     public static final String SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED = "SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED";
+    public static final String SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK = "SHARED_PREF_KEY_READING_FULL_OR_SUMMARY";
 
 
     public static void show_log_in_console(String title, String description){

@@ -26,13 +26,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.fishpott.dita.ListDataGenerators.BooksListDataGenerator;
-import com.fishpott.dita.Models.BookModel;
 import com.fishpott.dita.R;
 import com.fishpott.dita.Util.Config;
 import com.google.android.material.textfield.TextInputLayout;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -191,6 +188,8 @@ public class MobileMoneyPaymentActivity extends AppCompatActivity implements Vie
 
 
                                             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
+                                            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK, itemType);
                                             Config.openActivity(MobileMoneyPaymentActivity.this, BookTextReaderActivity.class, 1, 2, 0, "", "");
                                             return;
                                         }

@@ -38,7 +38,13 @@ public class BookTextReaderActivity extends AppCompatActivity {
 
         downloadFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
 
-        bookFullUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL).trim();
+        if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK).trim().equalsIgnoreCase("book_full")){
+            bookFullUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL).trim();
+        } else if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK).trim().equalsIgnoreCase("book_summary")){
+            bookFullUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL).trim();
+        } else {
+            Toast.makeText(getApplicationContext(), "Book type verification failed", Toast.LENGTH_LONG).show();
+        }
         Config.show_log_in_console("BookTextReaderTest", "bookFullUrl: " + bookFullUrl);
 
         mBackImageview.setOnClickListener(new View.OnClickListener() {

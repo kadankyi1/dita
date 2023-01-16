@@ -1,10 +1,7 @@
 package com.fishpott.dita.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +13,6 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fishpott.dita.ListDataGenerators.BooksListDataGenerator;
 import com.fishpott.dita.R;
 import com.fishpott.dita.Util.Config;
 
@@ -138,9 +134,11 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         if(view.getId() == mBackImageview.getId()){
             onBackPressed();
         } else if(view.getId() == mReadPaidFullBookButton.getId()){
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK, "book_full");
             Intent intent = new Intent(getApplicationContext(), BookTextReaderActivity.class);
             startActivity(intent);
         } else if(view.getId() == mReadPaidSummaryButton.getId()){
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK, "book_summary");
             Intent intent = new Intent(getApplicationContext(), BookTextReaderActivity.class);
             startActivity(intent);
         } else if(view.getId() == mReadFullButton.getId()){
