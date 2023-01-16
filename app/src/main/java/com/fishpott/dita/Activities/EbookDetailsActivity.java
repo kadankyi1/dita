@@ -2,6 +2,7 @@ package com.fishpott.dita.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,12 +20,13 @@ import com.fishpott.dita.ListDataGenerators.BooksListDataGenerator;
 import com.fishpott.dita.R;
 import com.fishpott.dita.Util.Config;
 
-public class EbookDetailsActivity extends AppCompatActivity implements View.OnClickListener{
+public class EbookDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView mBackImageview, mReloadImageview, mBookCoverImageView;
-    private TextView mBookTitleTextView, mBookAuthorTextView, mBookPriceTextView, mBookLongDescriptionTextView;
+    private ImageView mBackImageview, mReloadImageview, mBookCoverImageView, mChooseBuyBookFullImageView, mChooseBuyBookSummaryImageView;
+    private TextView mBookTitleTextView, mBookAuthorTextView, mBookPriceTextView, mBookLongDescriptionTextView, mChooseBuyBookFullTextView, mChooseBuyBookSummaryTextView;
     private RadioButton mMaleGenderRadioButton, mFemaleGenderRadioButton;
-    private Button mReadFullButton, mReadSummaryButton;
+    private ConstraintLayout mPaymentItemHolderConstraintLayout;
+    private Button mReadFullButton, mReadSummaryButton, mReadPaidFullBookButton, mReadPaidSummaryButton;
     private ProgressBar mLoadingProgressbar;
     int getting = 0;
     private String bookOrSummary = "";
@@ -43,9 +45,17 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         mBookAuthorTextView = findViewById(R.id.list_item_book_author_textview);
         mBookLongDescriptionTextView = findViewById(R.id.list_item_book_short_description_textview);
         mBookPriceTextView = findViewById(R.id.list_item_book_price_textview);
+        mReadPaidFullBookButton = findViewById(R.id.activity_ebookdetails_readpaidfullbook_button);
+        mReadPaidSummaryButton = findViewById(R.id.activity_ebookdetails_readpaidsummarybook_button);
+        mPaymentItemHolderConstraintLayout = findViewById(R.id.buy_items_holder_constraintlayout);
+        mReadFullButton = findViewById(R.id.activity_ebookdetails_readfull_button);
         mReadFullButton = findViewById(R.id.activity_ebookdetails_readfull_button);
         mReadSummaryButton = findViewById(R.id.activity_ebookdetails_readsummary_button);
+        mChooseBuyBookFullImageView = findViewById(R.id.fragment_signup_personalstage1_gender_male_imageview);
+        mChooseBuyBookFullTextView = findViewById(R.id.fragment_signup_personalstage1_gender_male_textview);
         mMaleGenderRadioButton = findViewById(R.id.fragment_signup_personalstage1_gender_male_radiobutton);
+        mChooseBuyBookSummaryImageView = findViewById(R.id.fragment_signup_personalstage1_gender_female_imageview);
+        mChooseBuyBookSummaryTextView = findViewById(R.id.fragment_signup_personalstage1_gender_female_textview);
         mFemaleGenderRadioButton = findViewById(R.id.fragment_signup_personalstage1_gender_female_radiobutton);
 
         if(!EbookDetailsActivity.this.isFinishing() && !Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_COVER_URL).trim().equalsIgnoreCase("")
@@ -58,28 +68,68 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         mBookPriceTextView.setText(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_PRICE).trim());
 
 
-        findViewById(R.id.fragment_signup_personalstage1_gender_male_imageview).setOnClickListener(this);
-        findViewById(R.id.fragment_signup_personalstage1_gender_male_textview).setOnClickListener(this);
-        findViewById(R.id.fragment_signup_personalstage1_gender_female_imageview).setOnClickListener(this);
-        findViewById(R.id.fragment_signup_personalstage1_gender_female_textview).setOnClickListener(this);
+        mChooseBuyBookFullImageView.setOnClickListener(this);
+        mChooseBuyBookFullTextView.setOnClickListener(this);
+        mChooseBuyBookSummaryImageView.setOnClickListener(this);
+        mChooseBuyBookSummaryTextView.setOnClickListener(this);
         mBackImageview.setOnClickListener(this);
+        mReadPaidFullBookButton.setOnClickListener(this);
+        mReadPaidSummaryButton.setOnClickListener(this);
         mReadFullButton.setOnClickListener(this);
         mReadSummaryButton.setOnClickListener(this);
         mMaleGenderRadioButton.setOnClickListener(this);
         mFemaleGenderRadioButton.setOnClickListener(this);
 
+        if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL).trim().equalsIgnoreCase("")){
+            mChooseBuyBookFullImageView.setVisibility(View.INVISIBLE);
+            mChooseBuyBookFullTextView.setVisibility(View.INVISIBLE);
+            mMaleGenderRadioButton.setVisibility(View.INVISIBLE);
+        } else {
+            mChooseBuyBookFullImageView.setVisibility(View.VISIBLE);
+            mChooseBuyBookFullTextView.setVisibility(View.VISIBLE);
+            mFemaleGenderRadioButton.setVisibility(View.VISIBLE);
+        }
+
+        if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL).trim().equalsIgnoreCase("")){
+            mChooseBuyBookSummaryImageView.setVisibility(View.INVISIBLE);
+            mChooseBuyBookSummaryTextView.setVisibility(View.INVISIBLE);
+            mFemaleGenderRadioButton.setVisibility(View.INVISIBLE);
+        } else {
+            mChooseBuyBookSummaryImageView.setVisibility(View.VISIBLE);
+            mChooseBuyBookSummaryTextView.setVisibility(View.VISIBLE);
+            mFemaleGenderRadioButton.setVisibility(View.VISIBLE);
+        }
+
+        if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_PURCHASED).trim().equalsIgnoreCase("yes")){
+            mReadPaidFullBookButton.setVisibility(View.VISIBLE);
+        } else {
+            mReadPaidFullBookButton.setVisibility(View.GONE);
+        }
+
+        if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED).trim().equalsIgnoreCase("yes")){
+            mReadPaidSummaryButton.setVisibility(View.VISIBLE);
+        } else {
+            mReadPaidSummaryButton.setVisibility(View.GONE);
+        }
+
+        if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED).trim().equalsIgnoreCase("yes") && Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_PURCHASED).trim().equalsIgnoreCase("yes")){
+            mPaymentItemHolderConstraintLayout.setVisibility(View.GONE);
+        } else {
+            mPaymentItemHolderConstraintLayout.setVisibility(View.VISIBLE);
+        }
+
     }
 
 
     public void setMaleClicked(){
-        bookOrSummary = "BOOK";
-        Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED, "BOOK");
+        bookOrSummary = "book_full";
+        Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED, "book_full");
         mFemaleGenderRadioButton.setChecked(false);
     }
 
     public void setFemaleClicked(){
-        bookOrSummary = "SUMMARY";
-        Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED, "SUMMARY");
+        bookOrSummary = "book_summary";
+        Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED, "book_summary");
         mMaleGenderRadioButton.setChecked(false);
     }
 
@@ -87,9 +137,16 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         if(view.getId() == mBackImageview.getId()){
             onBackPressed();
+        } else if(view.getId() == mReadPaidFullBookButton.getId()){
+            Intent intent = new Intent(getApplicationContext(), BookTextReaderActivity.class);
+            startActivity(intent);
+        } else if(view.getId() == mReadPaidSummaryButton.getId()){
+            Intent intent = new Intent(getApplicationContext(), BookTextReaderActivity.class);
+            startActivity(intent);
         } else if(view.getId() == mReadFullButton.getId()){
             // USING PDF VIEWER
             if(!bookOrSummary.trim().equalsIgnoreCase("")){
+                Toast.makeText(getApplicationContext(), "bookOrSummary: " + bookOrSummary, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), MobileMoneyPaymentActivity.class);
                 startActivity(intent);
             } else {
@@ -97,7 +154,7 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
             }
         } else if(view.getId() == mReadSummaryButton.getId()){
             if(!bookOrSummary.trim().equalsIgnoreCase("")){
-                Intent intent = new Intent(getApplicationContext(), MobileMoneyPaymentActivity.class);
+                Intent intent = new Intent(EbookDetailsActivity.this, MobileMoneyPaymentActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), "Choose if you are buying a full book or a summary", Toast.LENGTH_LONG).show();

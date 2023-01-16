@@ -134,6 +134,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
     private void allOnClickHandlers(View view, int position){
         if(view.getId() == R.id.list_item_book_parent_holder){
             Config.setSharedPreferenceInt(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_POSITION_IN_LIST, position);
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_ID, BooksListDataGenerator.getAllData().get(position).getBook_sys_id());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_COVER_URL, BooksListDataGenerator.getAllData().get(position).getBook_cover_photo());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE, BooksListDataGenerator.getAllData().get(position).getBook_title());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_AUTHOR, BooksListDataGenerator.getAllData().get(position).getBook_author());
@@ -142,6 +143,8 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE, BooksListDataGenerator.getAllData().get(position).getBook_summary_cost());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL, BooksListDataGenerator.getAllData().get(position).getBook_pdf());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL, BooksListDataGenerator.getAllData().get(position).getBook_summary_pdf());
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_PURCHASED, BooksListDataGenerator.getAllData().get(position).getBook_full_purchased());
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED, BooksListDataGenerator.getAllData().get(position).getBook_summary_purchased());
             Intent intent = new Intent(getApplicationContext(), EbookDetailsActivity.class);
             startActivity(intent);
         }
@@ -286,6 +289,8 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                                                 mine1.setBook_summary_audio(k.getString("book_summary_audio"));
                                                 mine1.setBook_cost(k.getString("book_cost_usd"));
                                                 mine1.setBook_summary_cost(k.getString("book_summary_cost_usd"));
+                                                mine1.setBook_full_purchased(k.getString("book_full_purchased"));
+                                                mine1.setBook_summary_purchased(k.getString("book_summary_purchased"));
                                                 //mine1.setCreated_at(k.getString("created_at"));
                                                 BooksListDataGenerator.addOneData(mine1);
 

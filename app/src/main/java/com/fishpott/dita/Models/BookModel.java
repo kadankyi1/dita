@@ -18,6 +18,8 @@ public class BookModel {
     private String book_summary_audio;
     private String book_cost;
     private String book_summary_cost;
+    private String book_full_purchased;
+    private String book_summary_purchased;
     private String created_at;
     private String updated_at;
 
@@ -143,6 +145,22 @@ public class BookModel {
 
     public void setBook_summary_cost(String book_summary_cost) {
         this.book_summary_cost = book_summary_cost;
+    }
+
+    public String getBook_full_purchased() {
+        return book_full_purchased;
+    }
+
+    public void setBook_full_purchased(String book_full_purchased) {
+        this.book_full_purchased = book_full_purchased;
+    }
+
+    public String getBook_summary_purchased() {
+        return book_summary_purchased;
+    }
+
+    public void setBook_summary_purchased(String book_summary_purchased) {
+        this.book_summary_purchased = book_summary_purchased;
     }
 
     public String getCreated_at() {

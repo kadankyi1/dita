@@ -1,92 +1,386 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_manual_momo_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.EbooksActivity">
+    android:background="@color/white"
+    tools:context=".Activities.MobileMoneyPaymentActivity">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/fragment_about_guideline_h_1"
+        android:id="@+id/title_bar_guideline_h_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.08" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/fragment_about_guideline_h_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fragment_about_constraint_layout_2"
+        android:id="@+id/title_bar_constraint_layout_2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/colorDarkBlue"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_about_guideline_h_1"
+        app:layout_constraintBottom_toTopOf="@+id/title_bar_guideline_h_1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <ImageView
-            android:id="@+id/fragment_about_fp_back_imageview"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
-            android:contentDescription="@string/none"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_about_guideline_v_3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/forgot_password_arrow_back"
-            app:tint="@color/colorWhite" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/fragment_about_guideline_v_3"
+            android:id="@+id/in_title_bar_guideline_v_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.15" />
 
-
         <TextView
-            android:id="@+id/activity_ebooks_search_edittext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Pay: Mobile Money"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_about_guideline_v_4"
-            app:layout_constraintStart_toEndOf="@+id/fragment_about_guideline_v_3"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/colorWhite" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/fragment_about_guideline_v_4"
+            android:id="@+id/title_bar_title_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.85" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:text="Mobile Money"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/title_bar_constraint_layout_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/in_title_bar_guideline_v_1"
+            app:layout_constraintTop_toTopOf="@+id/title_bar_constraint_layout_2" />
+
+        <ImageView
+            android:id="@+id/title_bar_back_icon_imageview"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="@string/none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/in_title_bar_guideline_v_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/forgot_password_arrow_back"
+            app:tint="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ProgressBar
-        android:id="@+id/loading_progressbar"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:visibility="gone"
-        style="@style/ProgressBarDarkBlue"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
+    <TextView
+        android:id="@+id/loadertext_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="Recording payment..."
+        android:textAlignment="center"
+        android:textColor="@color/colorDarkBlue"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_about_guideline_h_1"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/activity_login_loader"
+        app:layout_constraintVertical_bias="0.51" />
+
+    <ProgressBar
+        android:id="@+id/activity_login_loader"
+        style="@style/ProgressBarBlack"
+        android:layout_width="26dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/loadertext_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contents_holder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar_guideline_h_1">
+
+        <TextView
+            android:id="@+id/country_withdrawfunds_activity_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text=""
+            android:textAlignment="textStart"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/receiving_phone_number_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.13"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/receiving_phone_number_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Mobile Money Number: "
+            android:textAlignment="textStart"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/receiving_phone_number_acc_name_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/country_withdrawfunds_activity_textview"
+            app:layout_constraintVertical_bias="0.13"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/receiving_phone_number_acc_name_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Account Name: "
+            android:textAlignment="textStart"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/amount_info_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/receiving_phone_number_textview"
+            app:layout_constraintVertical_bias="0.13"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+
+        <TextView
+            android:id="@+id/amount_info_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Amount: "
+            android:textAlignment="textStart"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/fill_form_info_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/receiving_phone_number_acc_name_textview"
+            app:layout_constraintVertical_bias="0.13"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+
+        <TextView
+            android:id="@+id/fill_form_info_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="After the payment is sent, you will receive a confirmation message from the network operator that contains a transaction ID. Please use the transaction ID to fill the form below. DO NOT SUBMIT THE FORM TWICE FOR THE SAME TRANSACTION ID"
+            android:textAlignment="textStart"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/transaction_id_textinputlayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amount_info_textview"
+            app:layout_constraintVertical_bias="0.13"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transaction_id_textinputlayout"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:theme="@style/loginActivityHintStyle"
+            app:layout_constraintBottom_toTopOf="@+id/amount_sent_textinputlayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fill_form_info_textview"
+            app:layout_constraintVertical_bias="0.35000002"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <EditText
+                android:id="@+id/transaction_id_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Transaction Id"
+                android:inputType="number"
+                android:labelFor="@id/transaction_id_textinputlayout"
+                android:maxLength="100"
+                android:textColor="@color/colorDarkBlue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/amount_sent_textinputlayout"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:theme="@style/loginActivityHintStyle"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/sender_name_textinputlayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/transaction_id_textinputlayout"
+            app:layout_constraintVertical_bias="0.35000002"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <EditText
+                android:id="@+id/amount_sent_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Amount Sent"
+                android:inputType="text"
+                android:labelFor="@id/amount_sent_textinputlayout"
+                android:maxLength="45"
+                android:textColor="@color/colorDarkBlue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sender_name_textinputlayout"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:theme="@style/loginActivityHintStyle"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/date_label_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amount_sent_textinputlayout"
+            app:layout_constraintVertical_bias="0.35000002"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <EditText
+                android:id="@+id/sender_name_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Sender Name"
+                android:inputType="text"
+                android:labelFor="@id/sender_name_textinputlayout"
+                android:maxLength="45"
+                android:textColor="@color/colorDarkBlue" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/date_label_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Date Sent"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/date_month_textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sender_name_textinputlayout" />
+
+        <TextView
+            android:id="@+id/date_month_textview"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/background_with_top_and_bottom_borders"
+            android:gravity="center"
+            android:text="Month"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/request_button"
+            app:layout_constraintEnd_toStartOf="@+id/date_day_textview"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_label_textview"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/date_day_textview"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/background_with_top_and_bottom_borders"
+            android:gravity="center"
+            android:text="Day"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/request_button"
+            app:layout_constraintEnd_toStartOf="@+id/date_year_textview"
+            app:layout_constraintStart_toEndOf="@+id/date_month_textview"
+            app:layout_constraintTop_toBottomOf="@+id/date_label_textview"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/date_year_textview"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/background_with_top_and_bottom_borders"
+            android:gravity="center"
+            android:text="Year"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/request_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/date_day_textview"
+            app:layout_constraintTop_toBottomOf="@+id/date_label_textview"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/request_button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/rounded_corners_blue_background"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Proceed"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_day_textview" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

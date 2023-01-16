@@ -1,12 +1,15 @@
 package com.fishpott.dita.Util;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -29,6 +32,10 @@ import com.fishpott.dita.R;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class Config {
 
@@ -46,6 +53,7 @@ public class Config {
     public static final String LINK_VERIFY_LOGIN_CODE = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/verify-login-code";
     public static final String LINK_GET_BOOKS = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/get-books";
     public static final String LINK_CONTACT_DITA_TEAM = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/send-message";
+    public static final String LINK_RECORD_PAYMENT = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/record-payment";
 
 
     public static final String WEBVIEW_KEY_URL = "URL";
@@ -55,6 +63,7 @@ public class Config {
 
 
     public static final String SHARED_PREF_KEY_BOOK_POSITION_IN_LIST = "SHARED_PREF_KEY_BOOK_POSITION_IN_LIST";
+    public static final String SHARED_PREF_KEY_BOOK_ID = "SHARED_PREF_KEY_BOOK_ID";
     public static final String SHARED_PREF_KEY_BOOK_COVER_URL = "SHARED_PREF_KEY_BOOK_COVER_URL";
     public static final String SHARED_PREF_KEY_BOOK_TITLE = "SHARED_PREF_KEY_BOOK_TITLE";
     public static final String SHARED_PREF_KEY_BOOK_AUTHOR = "SHARED_PREF_KEY_BOOK_AUTHOR";
@@ -63,6 +72,8 @@ public class Config {
     public static final String SHARED_PREF_KEY_BOOK_SUMMARY_PRICE = "SHARED_PREF_KEY_BOOK_SUMMARY_PRICE";
     public static final String SHARED_PREF_KEY_BOOK_FULL_URL = "SHARED_PREF_KEY_BOOK_FULL_URL";
     public static final String SHARED_PREF_KEY_BOOK_SUMMARY_URL = "SHARED_PREF_KEY_BOOK_SUMMARY_URL";
+    public static final String SHARED_PREF_KEY_BOOK_FULL_PURCHASED = "SHARED_PREF_KEY_BOOK_FULL_PURCHASED";
+    public static final String SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED = "SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED";
     public static final String SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED = "SHARED_PREF_KEY_BOOK_OR_SUMMARY_TO_BE_PURCHASED";
 
 
@@ -353,5 +364,62 @@ public class Config {
 
     public static String removeCharacters(String text, String allRemovingCharacters){
         return text.replaceAll("[" + allRemovingCharacters + "]", "");
+    }
+
+
+    public static String getCurrentDateTime() {
+        // get date time in custom format
+        SimpleDateFormat sdf = new SimpleDateFormat("[yyyy/MM/dd HH:mm:ss]");
+        return sdf.format(new Date());
+    }
+
+    public static String getCurrentDateTime2() {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(c.getTime());
+    }
+
+    public static String getCurrentDateTime3(String format) {
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        return sdf.format(c.getTime());
+    }
+
+    public static String getCurrentDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    // GETTING A MONTH NAME(FULL/SHORT) FROM IT'S NUMBER
+    public static String getMonthNameFromMonthNumber(Activity thisActivity, int monthNumber, int nameType){
+        String[] allMonths;
+
+        if(nameType == 1){
+            allMonths = thisActivity.getResources().getStringArray(R.array.fragment_signup_personalstage2_month_names_full);
+        } else {
+            allMonths = thisActivity.getResources().getStringArray(R.array.fragment_signup_personalstage2_month_names_short);
+        }
+        return allMonths[monthNumber];
+    }
+
+    // OPENING THE DATE PICKER DIALOG BOX
+    public static DatePickerDialog.OnDateSetListener  openDatePickerDialog(Activity thisActivity, DatePickerDialog.OnDateSetListener mDateSetListener, Boolean dateIsPreset, int thisDay, int thisMonth, int thisYear){
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        if(dateIsPreset){
+            year = thisYear;
+            month = thisMonth;
+            day = thisDay;
+        }
+
+        DatePickerDialog dialog = new DatePickerDialog(thisActivity, android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, year, month, day);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        return  mDateSetListener;
     }
 }
