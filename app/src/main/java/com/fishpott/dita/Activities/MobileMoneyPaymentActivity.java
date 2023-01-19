@@ -190,6 +190,7 @@ public class MobileMoneyPaymentActivity extends AppCompatActivity implements Vie
                                             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 
                                             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK, itemType);
+                                            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM, "PAYMENT_PAGE");
                                             Config.openActivity(MobileMoneyPaymentActivity.this, BookTextReaderActivity.class, 1, 2, 0, "", "");
                                             return;
                                         }

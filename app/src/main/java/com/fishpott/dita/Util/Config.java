@@ -78,6 +78,11 @@ public class Config {
     public static final String SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK = "SHARED_PREF_KEY_READING_FULL_OR_SUMMARY";
 
 
+    public static final String SHARED_PREF_KEY_LAST_READING_PDF_URL = "SHARED_PREF_KEY_LAST_READING_PDF_URL";
+    public static final String SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME = "SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME";
+    public static final String SHARED_PREF_KEY_READING_FROM = "SHARED_PREF_KEY_READING_FROM";
+
+
     public static void show_log_in_console(String title, String description){
         if(ALLOW_LOGGING){
             Log.e(title, description);

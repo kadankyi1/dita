@@ -72,7 +72,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="9dp"
-                    android:text="The last book you read"
+                    android:text="Continue the last book you read"
                     android:textColor="@color/colorLightGray"
                     android:textSize="13sp"
                     app:layout_constraintBottom_toTopOf="@+id/grey_line_view"

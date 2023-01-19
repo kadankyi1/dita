@@ -10,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.fishpott.dita.Activities.BookTextReaderActivity;
 import com.fishpott.dita.Activities.ContactDitaActivity;
 import com.fishpott.dita.Activities.EbooksActivity;
 import com.fishpott.dita.Activities.JourneysActivity;
 import com.fishpott.dita.Activities.MentorsActivity;
+import com.fishpott.dita.Activities.MobileMoneyPaymentActivity;
 import com.fishpott.dita.Activities.SubscriptionActivity;
 import com.fishpott.dita.R;
 import com.fishpott.dita.Util.Config;
@@ -28,7 +30,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private View view = null;
     private ConstraintLayout mSubscriptionHolderConstraintLayout, mJourneysHolderConstraintLayout, mEbooksHolderConstraintLayout,
             mMentorsHolderConstraintLayout, mContactHolderConstraintLayout, mSubscribeHolderConstraintLayout;
-    private TextView mEmailTextView;
+    private TextView mEmailTextView, mLastReadingBookNameTextView;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -51,6 +53,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         mSubscriptionHolderConstraintLayout = view.findViewById(R.id.subscription_holder_contrainlayout);
+        mLastReadingBookNameTextView = view.findViewById(R.id.subscription_textview);
         mJourneysHolderConstraintLayout = view.findViewById(R.id.journeys_holder_contrainlayout);
         mEbooksHolderConstraintLayout = view.findViewById(R.id.ebooks_holder_contrainlayout);
         mMentorsHolderConstraintLayout = view.findViewById(R.id.mentors_holder_contrainlayout);
@@ -67,13 +70,21 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         mSubscribeHolderConstraintLayout.setOnClickListener(this);
         mContactHolderConstraintLayout.setOnClickListener(this);
 
+        if(!Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME).trim().equalsIgnoreCase("") && !Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL).trim().equalsIgnoreCase("")){
+            mLastReadingBookNameTextView.setText(Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME));
+        }
+
         return view;
     }
 
     @Override
     public void onClick(View view) {
         if(view.getId() == mSubscriptionHolderConstraintLayout.getId()){
-            Config.openActivity(getActivity(), SubscriptionActivity.class, 0, 0, 0, "", "");
+            //Config.openActivity(getActivity(), SubscriptionActivity.class, 0, 0, 0, "", "");
+            Config.setSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM, "SETTINGS_PAGE");
+            if(!Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME).trim().equalsIgnoreCase("") && !Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL).trim().equalsIgnoreCase("")){
+                Config.openActivity(getActivity(), BookTextReaderActivity.class, 1, 2, 0, "", "");
+            }
         } else if(view.getId() == mJourneysHolderConstraintLayout.getId()){
             Config.openActivity(getActivity(), JourneysActivity.class, 0, 0, 0, "", "");
         } else if(view.getId() == mEbooksHolderConstraintLayout.getId()){

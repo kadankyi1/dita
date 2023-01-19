@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.fishpott.dita.ListDataGenerators.BooksListDataGenerator;
 import com.fishpott.dita.R;
 import com.fishpott.dita.Util.Config;
 import com.github.barteksc.pdfviewer.PDFView;
@@ -38,12 +39,28 @@ public class BookTextReaderActivity extends AppCompatActivity {
 
         downloadFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
 
-        if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK).trim().equalsIgnoreCase("book_full")){
-            bookFullUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL).trim();
-        } else if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK).trim().equalsIgnoreCase("book_summary")){
-            bookFullUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL).trim();
+        if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM).trim().equalsIgnoreCase("PAYMENT_PAGE")) {
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE));
+            if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK).trim().equalsIgnoreCase("book_full")){
+                bookFullUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL).trim();
+                Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL, bookFullUrl);
+            } else if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK).trim().equalsIgnoreCase("book_summary")){
+                bookFullUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL).trim();
+                Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL, bookFullUrl);
+            } else {
+                Toast.makeText(getApplicationContext(), "Book type verification failed", Toast.LENGTH_LONG).show();
+            }
+        } else if(
+                Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM).trim().equalsIgnoreCase("SETTINGS_PAGE")
+                        || Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM).trim().equalsIgnoreCase("EBOOKDETAILS_PURCHASED_PAGE")
+        ) {
+            if(!Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL).trim().equalsIgnoreCase("")){
+                bookFullUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL).trim();
+            } else {
+                Toast.makeText(getApplicationContext(), "Reading continuation failed", Toast.LENGTH_LONG).show();
+            }
         } else {
-            Toast.makeText(getApplicationContext(), "Book type verification failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Book verification failed", Toast.LENGTH_LONG).show();
         }
         Config.show_log_in_console("BookTextReaderTest", "bookFullUrl: " + bookFullUrl);
 

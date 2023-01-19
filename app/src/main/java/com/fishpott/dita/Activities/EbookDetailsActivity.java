@@ -98,12 +98,18 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
 
         if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_PURCHASED).trim().equalsIgnoreCase("yes")){
             mReadPaidFullBookButton.setVisibility(View.VISIBLE);
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM, "EBOOKDETAILS_PURCHASED_PAGE");
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE));
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL));
         } else {
             mReadPaidFullBookButton.setVisibility(View.GONE);
         }
 
         if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED).trim().equalsIgnoreCase("yes")){
             mReadPaidSummaryButton.setVisibility(View.VISIBLE);
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM, "EBOOKDETAILS_PURCHASED_PAGE");
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE));
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL));
         } else {
             mReadPaidSummaryButton.setVisibility(View.GONE);
         }
