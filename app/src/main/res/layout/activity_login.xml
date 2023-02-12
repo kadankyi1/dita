@@ -124,6 +124,7 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.55" />
 
+    <!--
     <ImageView
         android:id="@+id/activity_login_cover_image"
         android:layout_width="0dp"
@@ -135,6 +136,22 @@
         app:layout_constraintBottom_toTopOf="@+id/activity_login_h_guideline1"
         app:layout_constraintEnd_toStartOf="@+id/activity_login_v_guideline3"
         app:layout_constraintStart_toEndOf="@+id/activity_login_v_guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/activity_login_h_guideline8" />
+        -->
+
+    <TextView
+        android:id="@+id/activity_login_cover_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="20dp"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/awalr"
+        android:text=" Tafarri "
+        android:textSize="100sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/activity_login_h_guideline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_login_h_guideline8" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

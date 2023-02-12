@@ -39,16 +39,24 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/colorWhite">
 
-        <ImageView
-            android:id="@+id/activity_start_image_imageview"
-            android:layout_width="226dp"
-            android:layout_height="210dp"
-            android:contentDescription="@string/none"
+
+        <TextView
+            android:id="@+id/activity_mainactivity_constraintlayout2_fp_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/awalr"
+            android:gravity="center"
+            android:text=" Tafarri "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="94sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/book" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -60,7 +68,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Dita : Learning Aid"
+        android:text="Ebooks &amp; Summaries"
         android:textAlignment="center"
         android:textColor="@color/colorWhite"
         android:textSize="22sp"

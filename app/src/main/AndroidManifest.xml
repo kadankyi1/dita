@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fishpott.dita">
+    package="com.tafarri.tafarri">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,48 +16,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dita">
         <activity
-            android:name=".Activities.MobileMoneyPaymentActivity"
+            android:name="com.tafarri.tafarri.Activities.MobileMoneyPaymentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.BookTextReaderActivity"
+            android:name="com.tafarri.tafarri.Activities.BookTextReaderActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activities.EbookDetailsActivity"
+            android:name="com.tafarri.tafarri.Activities.EbookDetailsActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.ContactDitaActivity"
+            android:name="com.tafarri.tafarri.Activities.ContactDitaActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.SubscriptionActivity"
+            android:name="com.tafarri.tafarri.Activities.SubscriptionActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.JourneysActivity"
+            android:name="com.tafarri.tafarri.Activities.JourneysActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.MentorsActivity"
+            android:name="com.tafarri.tafarri.Activities.MentorsActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.EbooksActivity"
+            android:name="com.tafarri.tafarri.Activities.EbooksActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.WebViewActivity"
+            android:name="com.tafarri.tafarri.Activities.WebViewActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.MainActivity"
+            android:name="com.tafarri.tafarri.Activities.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name="com.tafarri.tafarri.Activities.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".Activities.StartActivity"
+            android:name="com.tafarri.tafarri.Activities.StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

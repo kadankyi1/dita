@@ -36,13 +36,13 @@
 
                 <ImageView
                     android:id="@+id/subscription_imageview"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="17dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="9dp"
                     android:contentDescription="@string/none"
-                    android:src="@drawable/lastread"
+                    android:src="@drawable/lastreadbook"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/subscription_textview"
                     app:layout_constraintHorizontal_bias="0.0"
