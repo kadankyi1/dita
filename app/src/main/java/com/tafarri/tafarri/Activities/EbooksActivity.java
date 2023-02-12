@@ -145,6 +145,8 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL, BooksListDataGenerator.getAllData().get(position).getBook_summary_pdf());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_PURCHASED, BooksListDataGenerator.getAllData().get(position).getBook_full_purchased());
 
+            Config.show_log_in_console("BooksListActNOW", "\n List getBook_summary_pdf: " + BooksListDataGenerator.getAllData().get(position).getBook_summary_pdf());
+            Config.show_log_in_console("BooksListActNOW", "\n List getBook_pdf: " + BooksListDataGenerator.getAllData().get(position).getBook_pdf());
             Config.show_log_in_console("BooksListAct", "\n List getBook_title: " + BooksListDataGenerator.getAllData().get(position).getBook_title());
             Config.show_log_in_console("BooksListAct", "\n List getBook_summary_purchased: " + BooksListDataGenerator.getAllData().get(position).getBook_summary_purchased());
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED, BooksListDataGenerator.getAllData().get(position).getBook_summary_purchased());

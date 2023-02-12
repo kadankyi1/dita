@@ -123,6 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_webview_guideline_h_1" />
     -->
 
+
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/mypdfView"
         android:layout_width="0dp"
@@ -131,5 +132,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_webview_guideline_h_1"/>
+
+
+    <ProgressBar
+        android:id="@+id/activity_reader_loader"
+        style="@style/ProgressBarBlack"
+        android:layout_width="26dp"
+        android:layout_height="32dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/mypdfView"
+        app:layout_constraintTop_toTopOf="@+id/activity_webview_guideline_h_1" />
+
+
+    <!--
+    <TextView
+        android:id="@+id/activity_reader_loading_text_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:gravity="center"
+        android:text="Fetching and prepping the book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/mypdfView"
+        app:layout_constraintTop_toTopOf="@+id/activity_webview_guideline_h_1" />
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

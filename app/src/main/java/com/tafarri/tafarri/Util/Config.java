@@ -45,7 +45,7 @@ public class Config {
     //public static final String CURRENT_ENVIRONMENT_DOMAIN_IN_USE = "dita.local";
 
     // LIVE
-    public static Boolean ALLOW_LOGGING = false;
+    public static Boolean ALLOW_LOGGING = true;
     public static final String CURRENT_HTTP_IN_USE = "https://";
     public static final String CURRENT_ENVIRONMENT_DOMAIN_IN_USE = "tafarri.com";
 
