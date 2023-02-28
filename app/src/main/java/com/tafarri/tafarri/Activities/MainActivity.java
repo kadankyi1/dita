@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mFragmentsHolderViewPager = findViewById(R.id.activity_mainactivity_fragments_holder_viewpager);
         mSettingsIconImageView = findViewById(R.id.activity_mainactivity_constraintlayout2_menuicon_imageview);
-        mInfoImageView = findViewById(R.id.activity_mainactivity_constraintlayout2_searchicon_imageview);
+        //mInfoImageView = findViewById(R.id.activity_mainactivity_constraintlayout2_searchicon_imageview);
         mInfoViewHolderConstraintLayout = findViewById(R.id.activity_mainactivity_constraintlayout2_profileicon_holder_constraintlayout);
 
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFragmentsHolderViewPager.setCurrentItem(0);
 
         mSettingsIconImageView.setOnClickListener(this);
-        mInfoImageView.setOnClickListener(this);
+        //mInfoImageView.setOnClickListener(this);
         mInfoViewHolderConstraintLayout.setOnClickListener(this);
 
     }
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view.getId() == mSettingsIconImageView.getId()){
             mFragmentsHolderViewPager.setCurrentItem(0);
-        } else if(view.getId() == mInfoViewHolderConstraintLayout.getId() || view.getId() == mInfoImageView.getId()){
+        } else if(view.getId() == mInfoViewHolderConstraintLayout.getId()){
             //mFragmentsHolderViewPager.setCurrentItem(1);
             String url = Config.LINK_WEB_HOW_TO_VIEW;
             Config.show_log_in_console("websiteUrl", "LINK_WEB_HOW_TO_VIEW: " + url);
