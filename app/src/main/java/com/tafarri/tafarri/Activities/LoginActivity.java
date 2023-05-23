@@ -212,7 +212,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void verifyLoginCode(String emailAddress, String passcode) {
 
-        Log.e("PSignup Verify emailAddress", emailAddress);
+        Log.e("PSignupVerifyEmail", emailAddress);
 
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override

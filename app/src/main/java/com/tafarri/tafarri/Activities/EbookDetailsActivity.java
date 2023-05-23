@@ -19,7 +19,7 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private ImageView mBackImageview, mReloadImageview, mBookCoverImageView, mChooseBuyBookFullImageView, mChooseBuyBookSummaryImageView;
     private TextView mReferenceTextView, mBookTitleTextView, mBookAuthorTextView, mBookPriceTextView, mBookLongDescriptionTextView,
-            mChooseBuyBookFullTextView, mChooseBuyBookSummaryTextView, mSummaryBookTextView;
+            mChooseBuyBookFullTextView, mChooseBuyBookSummaryTextView, mSummaryBookTextView, mBuyOrReadInfoTextView;
     private RadioButton mMaleGenderRadioButton, mFemaleGenderRadioButton;
     private ConstraintLayout mPaymentItemHolderConstraintLayout;
     private Button mReadSummaryButton, mReadPaidFullBookButton, mReadPaidSummaryButton;
@@ -47,6 +47,7 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         mPaymentItemHolderConstraintLayout = findViewById(R.id.buy_items_holder_constraintlayout);
         mReferenceTextView = findViewById(R.id.activity_ebookdetails_reference_textview);
         mReadSummaryButton = findViewById(R.id.activity_ebookdetails_readsummary_button);
+        mBuyOrReadInfoTextView = findViewById(R.id.activity_ebookdetails_cedi_info_textview);
         mChooseBuyBookFullImageView = findViewById(R.id.fragment_signup_personalstage1_gender_male_imageview);
         mChooseBuyBookFullTextView = findViewById(R.id.fragment_signup_personalstage1_gender_male_textview);
         mMaleGenderRadioButton = findViewById(R.id.fragment_signup_personalstage1_gender_male_radiobutton);
@@ -63,11 +64,13 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         mBookAuthorTextView.setText(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_AUTHOR).trim());
         mReferenceTextView.setText("Reference: " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_ID).trim());
 
+        /*
         if(!Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_PRICE).trim().equalsIgnoreCase("")){
             mBookPriceTextView.setText(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_PRICE).trim() + " - Full Book");
         } else {
             mBookPriceTextView.setVisibility(View.GONE);
         }
+         */
         if(!Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim().equalsIgnoreCase("")){
             mSummaryBookTextView.setText(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim() + " - Summary");
         } else {
@@ -87,6 +90,7 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         mMaleGenderRadioButton.setOnClickListener(this);
         mFemaleGenderRadioButton.setOnClickListener(this);
 
+        /*
         if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL).trim().equalsIgnoreCase("")){
             mChooseBuyBookFullImageView.setVisibility(View.INVISIBLE);
             mChooseBuyBookFullTextView.setVisibility(View.INVISIBLE);
@@ -106,6 +110,7 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
             mChooseBuyBookSummaryTextView.setVisibility(View.VISIBLE);
             //mFemaleGenderRadioButton.setVisibility(View.VISIBLE);
         }
+         */
 
         if(
                 Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_PURCHASED).trim().equalsIgnoreCase("yes")
@@ -128,6 +133,8 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
                 || Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim().equalsIgnoreCase("Free")
         ){
             mReadPaidSummaryButton.setVisibility(View.VISIBLE);
+            mBuyOrReadInfoTextView.setText("You can read this summary on our website");
+            mReadSummaryButton.setText("READ ON WEB");
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM, "EBOOKDETAILS_PURCHASED_PAGE");
             //Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE));
             //Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL));
@@ -180,11 +187,21 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT,Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE).trim());
             startActivity(Intent.createChooser(intent, "Share"));
         } else if(view.getId() == mReadSummaryButton.getId()){
-            Intent intent = new Intent(android.content.Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.putExtra(android.content.Intent.EXTRA_TEXT, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_REFERENCE_URL).trim());
-            intent.putExtra(android.content.Intent.EXTRA_SUBJECT,Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE).trim());
-            startActivity(Intent.createChooser(intent, "Share"));
+            if(
+                    Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED).trim().equalsIgnoreCase("yes")
+            ){
+                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(android.content.Intent.EXTRA_TEXT, Config.LINK_WEB_HOW_TO_VIEW);
+                intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Access Your Books");
+                startActivity(Intent.createChooser(intent, "Share"));
+            } else {
+                Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(android.content.Intent.EXTRA_TEXT, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_REFERENCE_URL).trim());
+                intent.putExtra(android.content.Intent.EXTRA_SUBJECT,Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE).trim());
+                startActivity(Intent.createChooser(intent, "Share"));
+            }
         } else if(view.getId() == R.id.fragment_signup_personalstage1_gender_male_radiobutton){
             setMaleClicked();
         } else if(view.getId() == R.id.fragment_signup_personalstage1_gender_male_textview){

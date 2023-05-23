@@ -180,7 +180,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
         public class AudioViewHolder extends RecyclerView.ViewHolder  {
             private ConstraintLayout m_parent_holder_constraintlayout, m_image_holder_constraintlayout;
             private AppCompatImageView m_audio_image;
-            private TextView m_title_textview, m_price_textview, m_author_textview, m_short_desc_textview, m_summary_avail_textview;
+            private TextView m_title_textview, m_price_textview, m_author_textview, m_short_desc_textview;
 
             private View.OnClickListener innerClickListener = new View.OnClickListener() {
                 @Override
@@ -196,7 +196,6 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
                 m_audio_image = v.findViewById(R.id.list_item_book_image_imageview);
                 m_title_textview = v.findViewById(R.id.list_item_book_title_textview);
                 m_price_textview = v.findViewById(R.id.list_item_book_price_textview);
-                m_summary_avail_textview = v.findViewById(R.id.list_item_book_summary_textview);
                 m_author_textview = v.findViewById(R.id.list_item_book_author_textview);
                 m_short_desc_textview = v.findViewById(R.id.list_item_book_short_description_textview);
 
@@ -222,12 +221,7 @@ public class EbooksActivity extends AppCompatActivity implements View.OnClickLis
             ((AudioViewHolder) holder).m_author_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_author());
             ((AudioViewHolder) holder).m_short_desc_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_description_short());
             ((AudioViewHolder) holder).m_price_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_cost());
-            if(BooksListDataGenerator.getAllData().get(position).getBook_summary_pdf().trim().equalsIgnoreCase("")){
-                ((AudioViewHolder) holder).m_summary_avail_textview.setVisibility(View.GONE);
-            } else {
-                ((AudioViewHolder) holder).m_summary_avail_textview.setVisibility(View.VISIBLE);
-            }
-            //((AudioViewHolder) holder).m_summary_avail_textview.setText(BooksListDataGenerator.getAllData().get(position).getBook_cost());
+
 
         }
 

@@ -162,7 +162,7 @@ public class BookTextReaderActivity extends AppCompatActivity {
                 //noinspection ResultOfMethodCallIgnored
                 file.mkdirs();
             }
-            File result = new File(file.getAbsolutePath() + File.separator + name);
+            File result = new File(file.getAbsolutePath() + File.separator + name + "ADDING_THIS_SO_FILE_IS_NOT_FOUND");
             if(!result.exists()) {
                 DownloadManager downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
@@ -178,7 +178,7 @@ public class BookTextReaderActivity extends AppCompatActivity {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "Prepping your book.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Prepping your book..", Toast.LENGTH_LONG).show();
                     }
                 });
 

@@ -30,8 +30,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name="com.tafarri.tafarri.Activities.MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
             android:name="com.tafarri.tafarri.Activities.EbookDetailsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"  />
         <activity
             android:name="com.tafarri.tafarri.Activities.ContactDitaActivity"
             android:exported="true" />
@@ -49,9 +54,6 @@
             android:exported="true" />
         <activity
             android:name="com.tafarri.tafarri.Activities.WebViewActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.tafarri.tafarri.Activities.MainActivity"
             android:exported="true" />
         <activity
             android:name="com.tafarri.tafarri.Activities.LoginActivity"
