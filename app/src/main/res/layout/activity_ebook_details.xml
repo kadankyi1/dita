@@ -78,7 +78,7 @@
 
 
     <ProgressBar
-        android:id="@+id/loading_progressbar"
+        android:id="@+id/loading_progressbar2"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:visibility="gone"
@@ -410,6 +410,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_signup_personalstage1_gender_female_textview" />
+
+            <ProgressBar
+                android:id="@+id/activity_ebookdetails_loading_progressbar"
+                style="@style/ProgressBarDarkBlue"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_reference_textview" />
 
             <Button
                 android:id="@+id/activity_ebookdetails_readsummary_button"

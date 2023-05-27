@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tafarri.tafarri.Activities.BookTextReaderActivity;
+import com.tafarri.tafarri.Activities.WebViewActivity;
 import com.tafarri.tafarri.R;
 import com.tafarri.tafarri.Util.Config;
 
@@ -25,7 +26,7 @@ public class ReadFragment extends Fragment implements View.OnClickListener {
 
     private View view = null;
     private ConstraintLayout mSubscriptionHolderConstraintLayout, mJourneysHolderConstraintLayout;
-    private TextView mEmailTextView, mLastReadingBookNameTextView;
+    private TextView mLastReadingBookNameTextView;
     private ImageView mSettingsIconImageView, mInfoImageView;
 
     public ReadFragment() {
@@ -51,10 +52,8 @@ public class ReadFragment extends Fragment implements View.OnClickListener {
         mSubscriptionHolderConstraintLayout = view.findViewById(R.id.subscription_holder_contrainlayout);
         mLastReadingBookNameTextView = view.findViewById(R.id.subscription_textview);
         mJourneysHolderConstraintLayout = view.findViewById(R.id.journeys_holder_contrainlayout);
-        mEmailTextView = view.findViewById(R.id.myemail_textview);
         mSettingsIconImageView = view.findViewById(R.id.activity_mainactivity_constraintlayout2_menuicon_imageview);
 
-        mEmailTextView.setText(Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_EMAIL));
 
         mSubscriptionHolderConstraintLayout.setOnClickListener(this);
         mSettingsIconImageView.setOnClickListener(this);
@@ -73,7 +72,8 @@ public class ReadFragment extends Fragment implements View.OnClickListener {
             if(!Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME).trim().equalsIgnoreCase("") && !Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL).trim().equalsIgnoreCase("")){
 
                 //Toast.makeText(getActivity().getApplicationContext(), Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL).trim(), Toast.LENGTH_LONG).show();
-                Config.openActivity(getActivity(), BookTextReaderActivity.class, 0, 0, 0, "", "");
+                //Config.openActivity(getActivity(), BookTextReaderActivity.class, 0, 0, 0, "", "");
+                Config.openActivity(getActivity(), WebViewActivity.class, 0, 0, 0, "", "");
             }
         } else if(view.getId() == mSettingsIconImageView.getId()){
             //mFragmentsHolderViewPager.setCurrentItem(0);

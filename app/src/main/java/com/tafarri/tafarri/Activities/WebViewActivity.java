@@ -38,8 +38,8 @@ public class WebViewActivity extends AppCompatActivity  implements View.OnClickL
         websiteUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL).trim();
 
         if(!websiteUrl.trim().equalsIgnoreCase("")) {
-            //websiteUrl = "https://docs.google.com/gview?embedded=true&url=" + websiteUrl;
-            websiteUrl =(String) getIntent().getExtras().get(Config.WEBVIEW_KEY_URL);
+            websiteUrl = "https://docs.google.com/gview?embedded=true&url=" + websiteUrl;
+            //websiteUrl =(String) getIntent().getExtras().get(Config.WEBVIEW_KEY_URL);
             Config.show_log_in_console("websiteUrl", websiteUrl);
             domainName = Config.getUrlComponent(websiteUrl, 1);
             domainName = Config.removeWwwAndHttpFromUrl(domainName);

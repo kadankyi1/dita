@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void sendLoginCode(String emailAddress) {
 
         Log.e("PSignup emailAddress", emailAddress);
+        //Log.e("PSignup", "VCode: " + String.valueOf(Config.getAppVersionCode(getApplicationContext())));
 
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override

@@ -60,6 +60,7 @@
             android:id="@+id/activity_mainactivity_constraintlayout2_menuicon_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -86,7 +87,7 @@
                 android:layout_height="25dp"
                 android:layout_marginStart="8dp"
                 android:contentDescription="@string/none"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:tint="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -205,22 +206,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <TextView
-        android:id="@+id/myemail_textview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="50dp"
-        android:text="exempli@gratia.com"
-        android:textColor="@color/colorDarkBlue"
-        android:textSize="17sp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollview_settings_fragment" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
