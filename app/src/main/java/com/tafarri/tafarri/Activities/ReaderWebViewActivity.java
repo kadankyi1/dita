@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.tafarri.tafarri.R;
 import com.tafarri.tafarri.Util.Config;
 
-public class WebViewActivity extends AppCompatActivity  implements View.OnClickListener {
+public class ReaderWebViewActivity extends AppCompatActivity  implements View.OnClickListener {
 
     private TextView mUrlTextView;
     private ImageView mHttpsLockImageView, mBackImageView, mReloadBookImageView;
@@ -29,7 +29,7 @@ public class WebViewActivity extends AppCompatActivity  implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+        setContentView(R.layout.activity_reader_web_view);
 
         // BINDING VIEWS
         mUrlTextView = findViewById(R.id.activity_webview_constraint2_title_textview);
@@ -41,18 +41,41 @@ public class WebViewActivity extends AppCompatActivity  implements View.OnClickL
         mPageLoadingProgressBar2 = findViewById(R.id.loading_progressbar);
         handler = new Handler();
 
-        //websiteUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_REFERENCE_URL).trim();
-        websiteUrl =(String) getIntent().getExtras().get(Config.WEBVIEW_KEY_URL);
+        if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM).trim().equalsIgnoreCase("PAYMENT_PAGE")) {
+            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE));
+            if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK).trim().equalsIgnoreCase("book_full")){
+                websiteUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_URL).trim();
+                Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL, websiteUrl);
+            } else if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK).trim().equalsIgnoreCase("book_summary")){
+                websiteUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL).trim();
+                Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL, websiteUrl);
+            } else {
+                Toast.makeText(getApplicationContext(), "Book type verification failed", Toast.LENGTH_LONG).show();
+            }
+        } else if(
+                Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM).trim().equalsIgnoreCase("SETTINGS_PAGE")
+                        || Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM).trim().equalsIgnoreCase("EBOOKDETAILS_PURCHASED_PAGE")
+        ) {
+            if(!Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL).trim().equalsIgnoreCase("")){
+                websiteUrl = Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL).trim();
+            } else {
+                Toast.makeText(getApplicationContext(), "Reading continuation failed", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "Book verification failed", Toast.LENGTH_LONG).show();
+        }
 
         Config.show_log_in_console("BILLING", "websiteUrl: " + websiteUrl);
 
         if(!websiteUrl.trim().equalsIgnoreCase("")) {
+            websiteUrl = "https://docs.google.com/gview?embedded=true&url=" + websiteUrl;
+            //websiteUrl =(String) getIntent().getExtras().get(Config.WEBVIEW_KEY_URL);
             Config.show_log_in_console("websiteUrl", websiteUrl);
             domainName = Config.getUrlComponent(websiteUrl, 1);
             domainName = Config.removeWwwAndHttpFromUrl(domainName);
             mPageLoadingProgressBar.setVisibility(View.INVISIBLE);
         } else {
-            Toast.makeText(getApplicationContext(), "Failed...", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Book type verification failed...", Toast.LENGTH_LONG).show();
             finish();
         }
 
@@ -92,7 +115,15 @@ public class WebViewActivity extends AppCompatActivity  implements View.OnClickL
             onBackPressed();
         } else if(view.getId() == mReloadBookImageView.getId()){
             mWebView.reload();
-
+            mReloadBookImageView.setVisibility(View.GONE);
+            mPageLoadingProgressBar2.setVisibility(View.VISIBLE);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mReloadBookImageView.setVisibility(View.VISIBLE);
+                    mPageLoadingProgressBar2.setVisibility(View.GONE);
+                }
+            }, 5000);
         }
     }
 
@@ -108,15 +139,12 @@ public class WebViewActivity extends AppCompatActivity  implements View.OnClickL
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
             mPageLoadingProgressBar.setVisibility(View.VISIBLE);
-            mPageLoadingProgressBar2.setVisibility(View.VISIBLE);
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
             mPageLoadingProgressBar.setVisibility(View.INVISIBLE);
-            mPageLoadingProgressBar2.setVisibility(View.INVISIBLE);
-            mReloadBookImageView.setVisibility(View.VISIBLE);
         }
 
     }

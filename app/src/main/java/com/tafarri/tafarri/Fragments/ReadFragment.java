@@ -10,10 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.tafarri.tafarri.Activities.BookTextReaderActivity;
-import com.tafarri.tafarri.Activities.WebViewActivity;
+import com.tafarri.tafarri.Activities.ReaderWebViewActivity;
 import com.tafarri.tafarri.R;
 import com.tafarri.tafarri.Util.Config;
 
@@ -73,7 +71,7 @@ public class ReadFragment extends Fragment implements View.OnClickListener {
 
                 //Toast.makeText(getActivity().getApplicationContext(), Config.getSharedPreferenceString(getActivity().getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL).trim(), Toast.LENGTH_LONG).show();
                 //Config.openActivity(getActivity(), BookTextReaderActivity.class, 0, 0, 0, "", "");
-                Config.openActivity(getActivity(), WebViewActivity.class, 0, 0, 0, "", "");
+                Config.openActivity(getActivity(), ReaderWebViewActivity.class, 0, 0, 0, "", "");
             }
         } else if(view.getId() == mSettingsIconImageView.getId()){
             //mFragmentsHolderViewPager.setCurrentItem(0);

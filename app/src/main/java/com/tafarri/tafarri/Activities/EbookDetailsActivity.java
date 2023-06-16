@@ -114,7 +114,7 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         mBookTitleTextView.setText(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE).trim());
         mBookLongDescriptionTextView.setText(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_FULL_DESCRIPTION).trim());
         mBookAuthorTextView.setText(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_AUTHOR).trim());
-        mReferenceTextView.setText("Reference: " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_ID).trim());
+        //mReferenceTextView.setText("PAY ON WEB WITH MOBILE MONEY"));
 
         /*
         if(!Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_PRICE).trim().equalsIgnoreCase("")){
@@ -246,7 +246,12 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         } else if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim().equalsIgnoreCase("$3.00")){
             thisProductId = "three_dollar_summary";
         } else {
-            Toast.makeText(getApplicationContext(), "Payment error. Please contact support.", Toast.LENGTH_LONG).show();
+            if(
+                    !Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED).trim().equalsIgnoreCase("yes")
+                            && !Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim().equalsIgnoreCase("Free")
+            ) {
+                Toast.makeText(getApplicationContext(), "Payment error. Please contact support.", Toast.LENGTH_LONG).show();
+            }
             return;
         }
         ImmutableList<QueryProductDetailsParams.Product> productList = ImmutableList.of(
@@ -295,7 +300,7 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
                 .build();
         ConsumeResponseListener listener = (billingResult, s) -> {
             if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 String currentDateandTime = sdf.format(new Date());
                 recordPayment(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_ID).trim(), "book_summary", "google", currentDateandTime, purchase.getOrderId());
                 Config.show_log_in_console("BILLING", "verifyPurchase 2");
@@ -366,7 +371,12 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
         } else if(Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim().equalsIgnoreCase("$3.00")){
             productIds.add("three_dollar_summary");
         } else {
-            Toast.makeText(getApplicationContext(), "Payment error. Please contact support..", Toast.LENGTH_LONG).show();
+            if(
+                    !Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED).trim().equalsIgnoreCase("yes")
+                            && !Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim().equalsIgnoreCase("Free")
+            ) {
+                Toast.makeText(getApplicationContext(), "Payment error. Please contact support..", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -398,15 +408,29 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL));
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK, "book_summary");
             //Intent intent = new Intent(getApplicationContext(), BookTextReaderActivity.class);
-            Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ReaderWebViewActivity.class);
             startActivity(intent);
         } else if(view.getId() == mReferenceTextView.getId()){
+            /*
+            Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_REFERENCE_URL).trim());
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT,Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE).trim());
+            startActivity(Intent.createChooser(intent, "Tafarri Summary"));
+             */
+            String url = Config.LINK_WEB_HOW_TO_VIEW;
+            //Config.show_log_in_console("websiteUrl", "LINK_WEB_HOW_TO_VIEW: " + url);
+            Config.openActivity(EbookDetailsActivity.this, WebViewActivity.class, 1, 0, 1, Config.WEBVIEW_KEY_URL, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_REFERENCE_URL).trim() + "&em=" + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_EMAIL).trim());
+
+            /*
             // USING PDF VIEWER
             Intent intent = new Intent(android.content.Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(android.content.Intent.EXTRA_TEXT, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_REFERENCE_URL).trim());
             intent.putExtra(android.content.Intent.EXTRA_SUBJECT,Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE).trim());
             startActivity(Intent.createChooser(intent, "Share"));
+             */
+
         } else if(view.getId() == mReadSummaryButton.getId()){
             if(
                     Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED).trim().equalsIgnoreCase("yes")
@@ -470,12 +494,12 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
                 //mLoadingProgressbar.setVisibility(View.VISIBLE);
             }
         });
-        Config.show_log_in_console("getFinalPriceSummary", "token: " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN).trim());
-        Config.show_log_in_console("getFinalPriceSummary", "itemID: " + itemID);
-        Config.show_log_in_console("getFinalPriceSummary", "itemType: " + itemType);
-        Config.show_log_in_console("getFinalPriceSummary", "paymentType: " + paymentType);
-        Config.show_log_in_console("getFinalPriceSummary", "paymentDate: " + paymentDate);
-        Config.show_log_in_console("getFinalPriceSummary", "paymentRefNum: " + paymentRefNum);
+        Config.show_log_in_console("BILLING", "token: " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN).trim());
+        Config.show_log_in_console("BILLING", "itemID: " + itemID);
+        Config.show_log_in_console("BILLING", "itemType: " + itemType);
+        Config.show_log_in_console("BILLING", "paymentType: " + paymentType);
+        Config.show_log_in_console("BILLING", "paymentDate: " + paymentDate);
+        Config.show_log_in_console("BILLING", "paymentRefNum: " + paymentRefNum);
 
 
 
@@ -483,7 +507,7 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Config.show_log_in_console("EbookDetailsAct", "response: " +  response);
+                        Config.show_log_in_console("BILLING", "response: " +  response);
                         if(!EbookDetailsActivity.this.isFinishing()){
                             try {
                                 JSONObject response_json_object = new JSONObject(response);
@@ -494,21 +518,27 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
                                         @Override
                                         public void run() {
 
-
-                                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                                            Config.openActivity(EbookDetailsActivity.this, BookTextReaderActivity.class, 1, 2, 0, "", "");
+                                            Config.show_log_in_console("BILLING", "Recorded");
+                                            //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                                            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM, "PAYMENT_PAGE");
+                                            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE));
+                                            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_URL, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_URL));
+                                            Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FULLBOOK_OR_SUMMARYBOOK, "book_summary");
+                                            Config.openActivity(EbookDetailsActivity.this, ReaderWebViewActivity.class, 1, 2, 0, "", "");
                                             return;
                                         }
                                     });
 
                                 } else {
                                     //mLoadingProgressbar.setVisibility(View.INVISIBLE);
-                                    Toast.makeText(getApplicationContext(), response_json_object.getString("message"), Toast.LENGTH_LONG).show();
+                                    Config.show_log_in_console("BILLING", response_json_object.getString("message"));
+                                    //Toast.makeText(getApplicationContext(), response_json_object.getString("message"), Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                                Toast.makeText(getApplicationContext(), "An unexpected error occurred.", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getApplicationContext(), "An unexpected error occurred.", Toast.LENGTH_LONG).show();
 
+                                Config.show_log_in_console("BILLING", "An unexpected error occurred.");
                                 //mLoadingProgressbar.setVisibility(View.INVISIBLE);
                             }
                         }
@@ -517,8 +547,10 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Check your internet connection and try again", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "Check your internet connection and try again", Toast.LENGTH_LONG).show();
 
+                        Config.show_log_in_console("BILLING", "Check your internet connection and try again");
+                        //Config.show_log_in_console("BILLING", error.getMessage());
                         //mLoadingProgressbar.setVisibility(View.INVISIBLE);
                     }
                 }) {
@@ -527,7 +559,7 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Accept", "application/json");
-                headers.put("Authorization", Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN).trim());
+                headers.put("Authorization", "Bearer " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_USER_CREDENTIALS_USER_PASSWORD_ACCESS_TOKEN).trim());
                 //headers.put("ContentType", "application/json");
                 return headers;
             }

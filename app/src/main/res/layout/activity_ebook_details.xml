@@ -300,13 +300,17 @@
                 android:id="@+id/activity_ebookdetails_cedi_info_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
                 android:gravity="center"
+                android:text="To pay with mobile money, simply go to our website. You will have to reload the app after payment to access your summary."
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:text="You can buy this summary on our website"
+                android:textSize="12sp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_readsummary_button" />
 
             <ImageView
                 android:id="@+id/fragment_signup_personalstage1_gender_male_imageview"
@@ -404,7 +408,7 @@
                 android:background="@drawable/rounded_corners_blue_background"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Reference : 11111111111"
+                android:text="PAY ON WEB - MOBILE MONEY"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -432,13 +436,13 @@
                 android:background="@drawable/rounded_corners_blue_background"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="Proceed To Payment"
+                android:text="PAY ON APP WITH CARD"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_ebookdetails_reference_textview"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.19" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

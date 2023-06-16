@@ -54,4 +54,10 @@
         <item name="android:indeterminateTint">@color/colorDarkBlue</item>
         <item name="android:minWidth">200dp</item>
     </style>
+
+    <style name="ProgressBarWhite" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:backgroundTint">@color/colorDarkBlue</item>
+        <item name="android:indeterminateTint">@color/colorWhite</item>
+        <item name="android:minWidth">200dp</item>
+    </style>
 </resources>

@@ -27,7 +27,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.tafarri.tafarri.Activities.WebViewActivity;
+import com.tafarri.tafarri.Activities.ReaderWebViewActivity;
 import com.tafarri.tafarri.R;
 
 import java.net.MalformedURLException;
@@ -55,7 +55,7 @@ public class Config {
     public static final String LINK_GET_BOOKS = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/get-books";
     public static final String LINK_GET_MY_BOOKS = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/get-my-books";
     public static final String LINK_CONTACT_DITA_TEAM = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/send-message";
-    public static final String LINK_RECORD_PAYMENT = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/record-payment";
+    public static final String LINK_RECORD_PAYMENT = CURRENT_HTTP_IN_USE + CURRENT_ENVIRONMENT_DOMAIN_IN_USE + "/api/v1/user/record-app-payment";
 
 
     public static final String WEBVIEW_KEY_URL = "URL";
@@ -269,7 +269,7 @@ public class Config {
                 @Override
                 public void onClick(View v) {
                     String url = CURRENT_HTTP_IN_USE + "www.fishpott.com/service_agreements.html";
-                    openActivity(thisActivity, WebViewActivity.class, 1, 0, 1, WEBVIEW_KEY_URL, url);
+                    openActivity(thisActivity, ReaderWebViewActivity.class, 1, 0, 1, WEBVIEW_KEY_URL, url);
                 }
             });
 

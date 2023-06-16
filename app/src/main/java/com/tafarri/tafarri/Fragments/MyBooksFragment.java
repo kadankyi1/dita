@@ -304,7 +304,7 @@ public class MyBooksFragment extends Fragment implements View.OnClickListener {
                                                     mLoadingProgressbar.setVisibility(View.INVISIBLE);
                                                     mRecyclerview.setVisibility(View.INVISIBLE);
                                                     mReloadImageview.setVisibility(View.VISIBLE);
-                                                    Toast.makeText(getActivity().getApplicationContext(), "No Books found", Toast.LENGTH_LONG).show();
+                                                    //Toast.makeText(getActivity().getApplicationContext(), "No Books found", Toast.LENGTH_LONG).show();
                                                 }
                                             });
                                         }

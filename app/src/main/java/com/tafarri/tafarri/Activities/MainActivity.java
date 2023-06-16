@@ -17,7 +17,6 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.tafarri.tafarri.Fragments.ContactFragment;
 import com.tafarri.tafarri.Fragments.MyBooksFragment;
 import com.tafarri.tafarri.Fragments.SummariesFragment;
-import com.tafarri.tafarri.Fragments.WelcomeFragment;
 import com.tafarri.tafarri.Fragments.ReadFragment;
 import com.tafarri.tafarri.R;
 import com.tafarri.tafarri.Util.Config;
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //mFragmentsHolderViewPager.setCurrentItem(1);
             String url = Config.LINK_WEB_HOW_TO_VIEW;
             Config.show_log_in_console("websiteUrl", "LINK_WEB_HOW_TO_VIEW: " + url);
-            Config.openActivity(MainActivity.this, WebViewActivity.class, 1, 0, 1, Config.WEBVIEW_KEY_URL, url);
+            Config.openActivity(MainActivity.this, ReaderWebViewActivity.class, 1, 0, 1, Config.WEBVIEW_KEY_URL, url);
         }
     }
 

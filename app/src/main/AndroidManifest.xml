@@ -18,14 +18,16 @@
         android:theme="@style/Theme.Dita">
         <activity
             android:name="com.tafarri.tafarri.Activities.MobileMoneyPaymentActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="nosensor">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name="com.tafarri.tafarri.Activities.BookTextReaderActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="nosensor">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -37,31 +39,43 @@
         <activity
             android:name="com.tafarri.tafarri.Activities.EbookDetailsActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"  />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.tafarri.tafarri.Activities.ContactDitaActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="nosensor" />
         <activity
             android:name="com.tafarri.tafarri.Activities.SubscriptionActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="nosensor" />
         <activity
             android:name="com.tafarri.tafarri.Activities.JourneysActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="nosensor" />
         <activity
             android:name="com.tafarri.tafarri.Activities.MentorsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="nosensor" />
         <activity
             android:name="com.tafarri.tafarri.Activities.EbooksActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name="com.tafarri.tafarri.Activities.ReaderWebViewActivity"
+            android:exported="true"
+            android:screenOrientation="nosensor" />
         <activity
             android:name="com.tafarri.tafarri.Activities.WebViewActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="nosensor" />
         <activity
             android:name="com.tafarri.tafarri.Activities.LoginActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="nosensor" />
         <activity
             android:name="com.tafarri.tafarri.Activities.StartActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
