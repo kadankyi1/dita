@@ -260,6 +260,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Code"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890"
                 android:inputType="textEmailAddress"
                 android:labelFor="@id/activity_login_code_edit_text"
                 android:textColor="@color/colorDarkBlue" />

@@ -89,7 +89,8 @@ public class WebViewActivity extends AppCompatActivity  implements View.OnClickL
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.activity_webview_back_imageview){
-            onBackPressed();
+            //onBackPressed();
+            finish();
         } else if(view.getId() == mReloadBookImageView.getId()){
             mWebView.reload();
 

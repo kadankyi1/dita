@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -185,7 +186,8 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
                 || Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim().equalsIgnoreCase("Free")
         ){
             mReadPaidSummaryButton.setVisibility(View.VISIBLE);
-            mBuyOrReadInfoTextView.setText("You can read this summary on our website");
+            mBuyOrReadInfoTextView.setText("You can read this summary on the web");
+            mReferenceTextView.setVisibility(View.GONE);
             mReadSummaryButton.setText("READ ON WEB");
             Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_READING_FROM, "EBOOKDETAILS_PURCHASED_PAGE");
             //Config.setSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_LAST_READING_PDF_BOOK_NAME, Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_TITLE));
@@ -214,6 +216,8 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
 
         //start the connection after initializing the billing client
         connectGooglePlayBilling();
+
+
 
     } // OnCreate END
 
@@ -432,14 +436,22 @@ public class EbookDetailsActivity extends AppCompatActivity implements View.OnCl
              */
 
         } else if(view.getId() == mReadSummaryButton.getId()){
+
+            Config.show_log_in_console("BILLING", "SHARED_PREF_KEY_BOOK_SUMMARY_PRICE: " + Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim());
             if(
                     Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PURCHASED).trim().equalsIgnoreCase("yes")
+                            || Config.getSharedPreferenceString(getApplicationContext(), Config.SHARED_PREF_KEY_BOOK_SUMMARY_PRICE).trim().equalsIgnoreCase("Free")
             ){
+                /*
                 Intent intent = new Intent(android.content.Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(android.content.Intent.EXTRA_TEXT, Config.LINK_WEB_HOW_TO_VIEW);
                 intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Access Your Books");
                 startActivity(Intent.createChooser(intent, "Share"));
+                 */
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://tafarri.com/reader"));
+                Intent chooseIntent = Intent.createChooser(intent, "Choose from below");
+                startActivity(chooseIntent);
             } else {
                 mReadSummaryButton.setVisibility(View.GONE);
                 mBuyLoadingProgressbar.setVisibility(View.VISIBLE);

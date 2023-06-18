@@ -66,8 +66,8 @@ public class ContactFragment extends Fragment implements View.OnClickListener {
             try {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"info@tafarri.com"});
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Contact The Tafarri Team");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"support@tafarri.com"});
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Tafarri App Enquiry");
                 startActivity(intent);
             } catch (android.content.ActivityNotFoundException ex) {
                 Toast.makeText(getActivity().getApplicationContext(), "There are no email client installed on your device.",Toast.LENGTH_LONG);
